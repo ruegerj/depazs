@@ -11,6 +11,9 @@
     "author": "Svent Stocker, Laurin Scholtysik, Jan Rüger",
     "license": "MIT",
     "private": true,
+    "engines": {
+        "node": ">=20.11.0"
+    },
     "dependencies": {
         "express": "^4.18.2"
     },
