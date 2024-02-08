@@ -1,0 +1,17 @@
+{
+  "name": "depazs",
+  "version": "1.0.0",
+  "description": "Digital energy price management platform",
+  "main": "src/server.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "Svent Stocker, Laurin Scholtysik, Jan Rüger",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
