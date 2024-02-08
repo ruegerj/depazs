@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig",
+        "eamodio.gitlens",
+        "mikestead.dotenv",
+        "redhat.vscode-xml",
+        "esbenp.prettier-vscode"
+    ]
+}
+
