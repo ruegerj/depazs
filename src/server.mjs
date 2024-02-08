@@ -1,5 +1,5 @@
 import { config as configEnv } from 'dotenv';
-import app from './app.mjs';
+import { bootstrap } from './app.mjs';
 
 // shutdown on uncaught exceptions
 process.on('uncaughtException', (err) => {
@@ -9,7 +9,10 @@ process.on('uncaughtException', (err) => {
     process.exit(1);
 });
 
+// ensure .env file is bootstrapped
 configEnv({ path: 'local.env' });
+
+const app = bootstrap();
 
 const port = process.env.PORT;
 const server = app.listen(port, 'localhost', () => {

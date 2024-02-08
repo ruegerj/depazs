@@ -1,9 +1,17 @@
 import express from 'express';
+import morgan from 'morgan';
 
-const app = express();
+export function bootstrap() {
+    const app = express();
 
-app.get('/', (req, res) => {
-    res.status(200).send('Hello Energy World :)');
-});
+    // add request logger
+    if (process.env.NODE_ENV === 'development') {
+        app.use(morgan('dev'));
+    }
 
-export default app;
+    app.get('/', (req, res) => {
+        res.status(200).send('Hello Energy World :)');
+    });
+
+    return app;
+}
