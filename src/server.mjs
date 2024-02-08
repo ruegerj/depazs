@@ -1,3 +1,4 @@
+import { config as configEnv } from 'dotenv';
 import app from './app.mjs';
 
 // shutdown on uncaught exceptions
@@ -8,7 +9,9 @@ process.on('uncaughtException', (err) => {
     process.exit(1);
 });
 
-const port = 3000;
+configEnv({ path: 'local.env' });
+
+const port = process.env.PORT;
 const server = app.listen(port, 'localhost', () => {
     console.log(`Listening on port ${port}...`);
 });
