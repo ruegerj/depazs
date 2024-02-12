@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<energy-data xmlns="https://depazs.ch/energy-data"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://depazs.ch/energy-data energy-prices.schema.xsd">
+    <plant name="Energie Wasser Luzern">
+        <coordinates>
+            <lat>47.041649198202734</lat>
+            <lng>8.310853454784484</lng>
+        </coordinates>
+        <region-radius>50</region-radius>
+        <energy-types>
+            Gas
+            Electricity
+        </energy-types>
+        <prices>
+            <price type="Gas" date="2024-01-01">10.00</price>
+        </prices>
+    </plant>
+    <plant name="AEW Energie">
+        <coordinates>
+            <lat>47.392594286148736</lat>
+            <lng>8.05974145480201</lng>
+        </coordinates>
+        <region-radius>30</region-radius>
+        <energy-types>
+            Electricity
+        </energy-types>
+        <prices>
+            <price type="Electricity" date="2024-01-01">10.00</price>
+        </prices>
+    </plant>
+    <plant name="Aveenergy Suisse">
+        <coordinates>
+            <lat>47.37381627959934</lat>
+            <lng>8.544450453962556</lng>
+        </coordinates>
+        <region-radius>70</region-radius>
+        <energy-types>
+            Oil
+        </energy-types>
+        <prices>
+            <price type="Oil" date="2024-01-01">111.01</price>
+        </prices>
+    </plant>
+    <plant name="Energie Wasser Bern">
+        <coordinates>
+            <lat>46.94605125352341</lat>
+            <lng>7.404967668270281</lng>
+        </coordinates>
+        <region-radius>100</region-radius>
+        <energy-types>
+            Electricity
+        </energy-types>
+        <prices>
+            <price type="Electricity" date="2024-01-01">10.11</price>
+        </prices>
+    </plant>
+</energy-data>

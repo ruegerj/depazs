@@ -19,6 +19,14 @@ pnpm i
 npm i
 ```
 
+After installing the dependencies you must generate a local database (with some seed-records) as following:
+
+```bash
+pnpm database:seed
+# or
+npm run database:seed
+```
+
 ## Run locally
 
 If you want to run the project on your machine, run the command below. If you'd like to change the default port (_3000_) one can adapt it accordingly in the `local.env` file.
