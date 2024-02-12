@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<energy-data xmlns="https://depazs.ch/energy-data"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://depazs.ch/energy-data energy-prices.xsd">
+    <plant name="">
+        <coordinates>
+            <lat>1.0</lat>
+            <lng>1.0</lng>
+        </coordinates>
+        <region-radius>100</region-radius>
+        <energy-types></energy-types>
+        <prices>
+            <price type="" date=""></price>
+        </prices>
+    </plant>
+</energy-data>
