@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <energy-data xmlns="https://depazs.ch/energy-data"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://depazs.ch/energy-data energy-prices.xsd">
-    <plant name="">
+    xsi:schemaLocation="https://depazs.ch/energy-data energy-prices.schema.xsd">
+    <plant name="test">
         <coordinates>
             <lat>1.0</lat>
             <lng>1.0</lng>
         </coordinates>
         <region-radius>100</region-radius>
-        <energy-types></energy-types>
+        <energy-types>
+            Oil
+            Electricity
+        </energy-types>
         <prices>
-            <price type="" date=""></price>
+            <price type="Gas" date="2024-02-14">11.01</price>
         </prices>
     </plant>
 </energy-data>

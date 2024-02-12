@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="https://depazs.ch/energy-data"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="https://depazs.ch/energy-data"
+    elementFormDefault="qualified">
+    <xs:element name="energy-data">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element ref="plant" />
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:unique name="uniquePlantName">
+            <xs:selector xpath="plant" />
+            <xs:field xpath="@name" />
+        </xs:unique>
+    </xs:element>
+
+    <xs:element name="plant">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="coordinates" type="coordinates" />
+                <xs:element name="region-radius" type="xs:unsignedInt" />
+                <xs:element name="energy-types">
+                    <xs:simpleType>
+                        <xs:list itemType="energyType" />
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="prices">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:element ref="price" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="name" type="plantName" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="price">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="priceAmount">
+                    <xs:attribute name="type" type="energyType" use="required" />
+                    <xs:attribute name="date" type="xs:date" use="required" />
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="coordinates">
+        <xs:all>
+            <xs:element name="lat" type="xs:float" />
+            <xs:element name="lng" type="xs:float" />
+        </xs:all>
+    </xs:complexType>
+
+    <xs:simpleType name="plantName">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="energyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Gas" />
+            <xs:enumeration value="Electricity" />
+            <xs:enumeration value="Oil" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="priceAmount">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00" />
+            <xs:fractionDigits value="2" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
