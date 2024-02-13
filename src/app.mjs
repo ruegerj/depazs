@@ -1,6 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 
+import pageRoutes from './routes.mjs';
+
 export function bootstrap() {
     const app = express();
 
@@ -8,6 +10,8 @@ export function bootstrap() {
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
     }
+
+    app.use(pageRoutes);
 
     app.get('/', (req, res) => {
         res.status(200).send('Hello Energy World :)');
