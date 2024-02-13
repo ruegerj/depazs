@@ -13,7 +13,16 @@
             Electricity
         </energy-types>
         <prices>
-            <price type="Gas" date="2024-01-01">10.00</price>
+            <price type="Electricity" date="2024-01-15">25</price>
+            <price type="Electricity" date="2024-03-05">18</price>
+            <price type="Electricity" date="2024-05-20">28</price>
+            <price type="Electricity" date="2024-07-10">20</price>
+            <price type="Electricity" date="2024-09-03">30</price>
+            <price type="Gas" date="2024-01-15">35</price>
+            <price type="Gas" date="2024-03-05">28</price>
+            <price type="Gas" date="2024-05-20">40</price>
+            <price type="Gas" date="2024-07-10">30</price>
+            <price type="Gas" date="2024-09-03">45</price>
         </prices>
     </plant>
     <plant name="AEW Energie">
@@ -26,7 +35,11 @@
             Electricity
         </energy-types>
         <prices>
-            <price type="Electricity" date="2024-01-01">10.00</price>
+            <price type="Electricity" date="2024-01-15">28</price>
+            <price type="Electricity" date="2024-03-05">20</price>
+            <price type="Electricity" date="2024-05-20">30</price>
+            <price type="Electricity" date="2024-07-10">22</price>
+            <price type="Electricity" date="2024-09-03">32</price>
         </prices>
     </plant>
     <plant name="Aveenergy Suisse">
@@ -39,7 +52,11 @@
             Oil
         </energy-types>
         <prices>
-            <price type="Oil" date="2024-01-01">111.01</price>
+            <price type="Oil" date="2024-01-15">55</price>
+            <price type="Oil" date="2024-03-05">42</price>
+            <price type="Oil" date="2024-05-20">60</price>
+            <price type="Oil" date="2024-07-10">48</price>
+            <price type="Oil" date="2024-09-03">70</price>
         </prices>
     </plant>
     <plant name="Energie Wasser Bern">
@@ -52,7 +69,11 @@
             Electricity
         </energy-types>
         <prices>
-            <price type="Electricity" date="2024-01-01">10.11</price>
+            <price type="Electricity" date="2024-01-15">27</price>
+            <price type="Electricity" date="2024-03-05">19</price>
+            <price type="Electricity" date="2024-05-20">29</price>
+            <price type="Electricity" date="2024-07-10">21</price>
+            <price type="Electricity" date="2024-09-03">31</price>
         </prices>
     </plant>
 </energy-data>
