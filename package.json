@@ -10,7 +10,7 @@
         "start:dev": "nodemon ."
     },
     "keywords": [],
-    "author": "Svent Stocker, Laurin Scholtysik, Jan Rüger",
+    "author": "Jan Rüger, Laurin Scholtysik, Sven Stocker",
     "license": "MIT",
     "private": true,
     "engines": {
