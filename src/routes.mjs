@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { cwd } from 'node:process';
 import { Router } from 'express';
+import express from 'express';
 
 const excludedFiles = [];
 const router = Router();
@@ -12,6 +13,9 @@ const pages = readdirSync(pageDir, { withFileTypes: true }).filter(
 );
 
 for (const page of pages) {
+    const jsDir = join(page.path, page.name);
+    router.use(`/${page.name}`, express.static(jsDir));
+
     const xmlPath = join(page.path, page.name, `${page.name}.xml`);
     const xslPath = join(page.path, page.name, `${page.name}.xsl`);
 
