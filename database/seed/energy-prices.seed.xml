@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<energy-data xmlns="https://depazs.ch/energy-data"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://depazs.ch/energy-data ../energy-prices.schema.xsd">
+<?xml-stylesheet type="text/xsl" href="add-price.xsl"?>
+<energy-data xmlns="https://depazs.ch/energy-data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://depazs.ch/energy-data ../energy-prices.schema.xsd">
     <plant name="Energie Wasser Luzern">
         <coordinates>
             <lat>47.041649198202734</lat>
