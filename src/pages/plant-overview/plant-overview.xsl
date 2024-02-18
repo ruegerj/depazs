@@ -14,10 +14,19 @@
             </head>
             <body>
                 <h1>Plant Overview</h1>
+                <ul>
+                    <xsl:apply-templates select="document('../../../database/seed/energy-prices.seed.xml')" />
+                </ul>
                 <!-- Map here... -->
                 <div id="map" style="height: 400px;"></div>
             </body>
         </html>
+    </xsl:template>
+
+    <xsl:template match="energy-data">
+        <li>
+            <xsl:value-of select="plant" />
+        </li>
     </xsl:template>
 
 </xsl:stylesheet>

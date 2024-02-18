@@ -10,13 +10,16 @@ import pageRoutes from './routes.mjs';
 export function bootstrap() {
     const app = express();
 
-    // add request logger
+    // Add request logger
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
     }
 
-    // serve static files from the node_modules directory
+    // Serve static files from the node_modules directory
     app.use('/node_modules', express.static(path.join(__dirname, '..', 'node_modules')));
+
+    // Serve static files from the database/seed directory
+    app.use('/database/seed', express.static(path.join(__dirname, '..', 'database', 'seed')));
 
     app.use(pageRoutes);
 
