@@ -11,5 +11,7 @@ function initializeMap() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Log the hmtl output
+    console.log(document.documentElement.outerHTML);
     initializeMap();
 });
