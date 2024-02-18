@@ -16,10 +16,13 @@ export function bootstrap() {
     }
 
     // Serve static files from the node_modules directory
-    app.use('/node_modules', express.static(path.join(__dirname, '..', 'node_modules')));
+    app.use(
+        '/node_modules',
+        express.static(path.join(__dirname, '..', 'node_modules')),
+    );
 
-    // Serve static files from the database/seed directory
-    app.use('/database/seed', express.static(path.join(__dirname, '..', 'database', 'seed')));
+    // serve local db file & schema
+    app.use('/database', express.static(path.join(path.resolve(), 'database')));
 
     app.use(pageRoutes);
 
