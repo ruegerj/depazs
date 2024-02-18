@@ -5,7 +5,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 import express from 'express';
 import morgan from 'morgan';
-import pageRoutes from './routes.mjs';
+import pageRoutes from './routes/page-routes.mjs';
+import apiRoutes from './routes/api-routes.mjs';
 
 export function bootstrap() {
     const app = express();
@@ -25,9 +26,10 @@ export function bootstrap() {
     app.use('/database', express.static(path.join(path.resolve(), 'database')));
 
     app.use(pageRoutes);
+    app.use('/api', apiRoutes);
 
     app.get('/', (req, res) => {
-        res.status(200).send('Hello Energy World :)');
+        res.sendFile(path.join(__dirname, 'pages', 'index.html'));
     });
 
     return app;
