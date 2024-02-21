@@ -21,7 +21,7 @@
                 <ul>
                     <xsl:apply-templates
                         select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
-                        <xsl:sort select="d:prices/d:price[@type='Electricity']" order="ascending" />
+                        <xsl:sort select="number(d:prices/d:price[@type='Electricity'])" order="ascending" data-type="number"/>
                         <xsl:with-param name="energyType" select="'Electricity'" />
                     </xsl:apply-templates>
                 </ul>
@@ -31,8 +31,18 @@
                 <ul>
                     <xsl:apply-templates
                         select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
-                        <xsl:sort select="d:prices/d:price[@type='Gas']" order="ascending" />
+                        <xsl:sort select="number(d:prices/d:price[@type='Gas'])" order="ascending" data-type="number"/>
                         <xsl:with-param name="energyType" select="'Gas'" />
+                    </xsl:apply-templates>
+                </ul>
+
+                <!-- Oil List -->
+                <h2>Oil Plants</h2>
+                <ul>
+                    <xsl:apply-templates
+                        select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
+                        <xsl:sort select="number(d:prices/d:price[@type='Oil'])" order="ascending" data-type="number"/>
+                        <xsl:with-param name="energyType" select="'Oil'" />
                     </xsl:apply-templates>
                 </ul>
 
