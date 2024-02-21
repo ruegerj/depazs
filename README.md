@@ -44,3 +44,4 @@ npm run start #(start:dev -> watch-mode)
 | [express](https://www.npmjs.com/package/express) | Web Server for hosting XML-Files, IO-operations etc. |
 | [dotenv](https://www.npmjs.com/package/dotenv)   | Config management (`.env` files)                     |
 | [morgan](https://www.npmjs.com/package/morgan)   | Request logger for development                       |
+| [leaflet](https://www.npmjs.com/package/leaflet) | Interactive maps library                             |
