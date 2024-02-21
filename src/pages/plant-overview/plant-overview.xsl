@@ -49,13 +49,8 @@
             <li>
                 <xsl:value-of select="concat('Plant Name: ', @name)" />
                 <ul>
-                    <!-- Display latest date -->
-                    <xsl:call-template name="displayLatestDate">
-                        <xsl:with-param name="energyType" select="$energyType" />
-                    </xsl:call-template>
-
-                    <!-- Display energy type and price -->
-                    <xsl:call-template name="displayEnergyPrice">
+                    <!-- Display latest date and price -->
+                    <xsl:call-template name="displayDateAndPrice">
                         <xsl:with-param name="energyType" select="$energyType" />
                     </xsl:call-template>
                 </ul>
@@ -63,21 +58,22 @@
         </xsl:if>
     </xsl:template>
 
-    <!-- Template for displaying the latest date -->
-    <xsl:template name="displayLatestDate">
+    <!-- Template for displaying the latest date and price -->
+    <xsl:template name="displayDateAndPrice">
         <xsl:param name="energyType" />
+        <xsl:variable name="latestDate">
+            <xsl:for-each select="d:prices/d:price[@type = $energyType]">
+                <xsl:sort select="@date" order="descending" />
+                <xsl:if test="position() = 1">
+                    <xsl:value-of select="@date" />
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
         <li>
-            <xsl:text>Latest Date: </xsl:text>
-            <xsl:value-of select="d:prices/d:price[@type = $energyType]/@date[last()]" />
+            <xsl:value-of select="concat('Latest Date: ', $latestDate)" />
         </li>
-    </xsl:template>
-
-    <!-- Template for displaying energy type and price -->
-    <xsl:template name="displayEnergyPrice">
-        <xsl:param name="energyType" />
         <li>
-            <xsl:value-of
-                select="concat($energyType, ' Price: ', d:prices/d:price[@type = $energyType][last()])" />
+            <xsl:value-of select="concat($energyType, ' Price: ', d:prices/d:price[@type = $energyType][@date = $latestDate])" />
         </li>
     </xsl:template>
 
