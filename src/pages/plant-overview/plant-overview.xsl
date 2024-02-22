@@ -19,9 +19,8 @@
                 <!-- Electricity List -->
                 <h2>Electricity Plants</h2>
                 <ul>
-                    <xsl:apply-templates
-                        select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
-                        <xsl:sort select="number(d:prices/d:price[@type='Electricity'])" order="ascending" data-type="number"/>
+                    <xsl:apply-templates select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
+                        <xsl:sort select="number(d:prices/d:price[@type='Electricity'][last()])" order="ascending" data-type="number"/>
                         <xsl:with-param name="energyType" select="'Electricity'" />
                     </xsl:apply-templates>
                 </ul>
@@ -29,9 +28,8 @@
                 <!-- Gas List -->
                 <h2>Gas Plants</h2>
                 <ul>
-                    <xsl:apply-templates
-                        select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
-                        <xsl:sort select="number(d:prices/d:price[@type='Gas'])" order="ascending" data-type="number"/>
+                    <xsl:apply-templates select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
+                        <xsl:sort select="number(d:prices/d:price[@type='Gas'][last()])" order="ascending" data-type="number"/>
                         <xsl:with-param name="energyType" select="'Gas'" />
                     </xsl:apply-templates>
                 </ul>
@@ -39,9 +37,8 @@
                 <!-- Oil List -->
                 <h2>Oil Plants</h2>
                 <ul>
-                    <xsl:apply-templates
-                        select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
-                        <xsl:sort select="number(d:prices/d:price[@type='Oil'])" order="ascending" data-type="number"/>
+                    <xsl:apply-templates select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
+                        <xsl:sort select="number(d:prices/d:price[@type='Oil'][last()])" order="ascending" data-type="number"/>
                         <xsl:with-param name="energyType" select="'Oil'" />
                     </xsl:apply-templates>
                 </ul>
@@ -60,31 +57,17 @@
                 <xsl:value-of select="concat('Plant Name: ', @name)" />
                 <ul>
                     <!-- Display latest date and price -->
-                    <xsl:call-template name="displayDateAndPrice">
-                        <xsl:with-param name="energyType" select="$energyType" />
-                    </xsl:call-template>
+                    <xsl:variable name="latestPrice" select="d:prices/d:price[@type = $energyType][last()]" />
+                    <li>
+                        <xsl:text>Latest Date: </xsl:text>
+                        <xsl:value-of select="$latestPrice/@date" />
+                    </li>
+                    <li>
+                        <xsl:value-of select="concat($energyType, ' Price: ', $latestPrice)" />
+                    </li>
                 </ul>
             </li>
         </xsl:if>
-    </xsl:template>
-
-    <!-- Template for displaying the latest date and price -->
-    <xsl:template name="displayDateAndPrice">
-        <xsl:param name="energyType" />
-        <xsl:variable name="latestDate">
-            <xsl:for-each select="d:prices/d:price[@type = $energyType]">
-                <xsl:sort select="@date" order="descending" />
-                <xsl:if test="position() = 1">
-                    <xsl:value-of select="@date" />
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:variable>
-        <li>
-            <xsl:value-of select="concat('Latest Date: ', $latestDate)" />
-        </li>
-        <li>
-            <xsl:value-of select="concat($energyType, ' Price: ', d:prices/d:price[@type = $energyType][@date = $latestDate])" />
-        </li>
     </xsl:template>
 
 </xsl:stylesheet>
