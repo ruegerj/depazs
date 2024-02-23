@@ -36,18 +36,19 @@
                     </xsl:attribute>
                     <xsl:value-of select="@name" />
                 </h3>
-                <ul>
-                    <!-- Display latest date and price -->
+                <!-- Display latest date and price -->
+                <div class="w3-container">
                     <xsl:variable name="latestPrice"
                         select="d:prices/d:price[@type = $energyType][last()]" />
-                    <li>
-                        <xsl:text>Latest Date: </xsl:text>
-                        <xsl:value-of select="$latestPrice/@date" />
-                    </li>
-                    <li>
-                        <xsl:value-of select="concat($energyType, ' Price: ', $latestPrice)" />
-                    </li>
-                </ul>
+                    <p>
+                        <i class="fas fa-calendar"></i>&#xA0; <xsl:value-of
+                            select="concat('Latest Date: ', $latestPrice/@date)" />
+                    </p>
+                    <p>
+                        <i class="fas fa-coins"></i>&#xA0; <xsl:value-of
+                            select="concat($energyType, ' Price: ', $latestPrice, ' CHF')" />
+                    </p>
+                </div>
             </div>
         </xsl:if>
     </xsl:template>
@@ -69,6 +70,8 @@
                 <title>DEPAZS</title>
                 <link rel="stylesheet" href="/node_modules/w3-css/w3.css" />
                 <link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css" />
+                <link rel="stylesheet"
+                    href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
                 <script src="/node_modules/leaflet/dist/leaflet.js"></script>
                 <script src="map.js"></script>
             </head>
