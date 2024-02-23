@@ -17,6 +17,9 @@ dependencies:
   morgan:
     specifier: ^1.10.0
     version: 1.10.0
+  w3-css:
+    specifier: ^4.1.0
+    version: 4.1.0
 
 devDependencies:
   '@types/morgan':
@@ -985,6 +988,10 @@ packages:
   /vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
+    dev: false
+
+  /w3-css@4.1.0:
+    resolution: {integrity: sha512-nBomstRa3ITEDFG3EsYvVijueT3O1iwmjf96656VOR2BG6cwfkKwtwy/Gat7golUaA9ULPZPpo/Vj+3mYkeVfw==}
     dev: false
 
   /yallist@4.0.0:
