@@ -1,17 +1,20 @@
+let mymap;
+
 function initializeMap() {
-    var mymap = L.map('map').setView([51.505, -0.09], 13);
+    mymap = L.map('map').setView([46.8182, 8.2275], 8);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
     }).addTo(mymap);
+    console.log("Map initialized");
+}
 
-    var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-    marker.bindPopup("<b>Hello World!</b><br>This is a Leaflet map.").openPopup();
+function addMarkerToMap(lat, lng, name) {
+    console.log("Adding marker to map");
+    var marker = L.marker([lat, lng]).addTo(mymap);
+    marker.bindPopup("<b>" + name + "</b><br>This is a plant.").openPopup();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Log the hmtl output
-    console.log(document.documentElement.outerHTML);
     initializeMap();
 });
