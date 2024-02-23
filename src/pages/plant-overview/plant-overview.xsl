@@ -8,10 +8,8 @@
     <!-- Named template to generate a list section for each energy type -->
     <xsl:template name="generateEnergyList">
         <xsl:param name="energyType" />
-        <xsl:variable name="energyTypePlural"
-            select="concat($energyType, 's')" />
-        <h2><xsl:value-of
-                select="$energyType" /> Plants</h2>
+        <h2>
+            <xsl:value-of select="$energyType" /> Plants</h2>
         <ul>
             <xsl:apply-templates
                 select="document('../../../database/energy-prices.xml')/d:energy-data/d:plant">
