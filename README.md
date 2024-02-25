@@ -6,7 +6,7 @@ The _"Digitale Energie Preis Auskunfts Zentralstelle (DEPAZS)"_ is a small websi
 
 Please make sure you have the following things installed on your machine:
 
--   [NodeJS LTS (v20.11.00)](https://nodejs.org/en)
+-   [NodeJS (v21.6.0 or later)](https://nodejs.org/en)
 -   _npm_ (std. issue with Node) or [pnpm](https://pnpm.io/installation#using-npm)
 
 ## Setup
