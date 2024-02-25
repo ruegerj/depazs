@@ -8,7 +8,7 @@
     <xsl:template name="generateEnergyList">
         <xsl:param name="energyType" />
         <xsl:param name="color" />
-        <h2>
+        <h2 id="{$energyType}">
             <xsl:value-of select="$energyType" /> Plants</h2>
         <ul>
             <xsl:apply-templates
@@ -94,6 +94,22 @@
             </head>
             <body class="w3-container">
                 <h1>Plant Overview</h1>
+
+                <!-- Navigation -->
+                <div class="w3-center">
+                    <div class="w3-bar">
+                        <a href="#Electricity"
+                            class="w3-button w3-white w3-border w3-border-black w3-round-xxlarge w3-padding-small w3-large w3-margin-right"
+                            style="width: 120px;">Electricity</a>
+                        <a href="#Gas"
+                            class="w3-button w3-white w3-border w3-border-black w3-round-xxlarge w3-padding-small w3-large w3-margin-right"
+                            style="width: 120px;">Gas</a>
+                        <a href="#Oil"
+                            class="w3-button w3-white w3-border w3-border-black w3-round-xxlarge w3-padding-small w3-large"
+                            style="width: 120px;">Oil</a>
+                    </div>
+                </div>
+
 
                 <!-- Generate list sections for each energy type -->
                 <xsl:call-template name="generateEnergyList">
