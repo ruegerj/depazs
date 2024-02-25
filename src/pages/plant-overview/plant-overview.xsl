@@ -48,9 +48,35 @@
                             select="concat($energyType, ' Price: ', $latestPrice, ' CHF')" />
                     </p>
                 </div>
-                <div data-lat="{coordinates/lat}" data-lng="{coordinates/lng}"
-                    data-name="{@name}" class="marker-data"></div>
+                <!-- Add data attributes for each energy type price -->
+                <div data-lat="{coordinates/lat}" data-lng="{coordinates/lng}" data-name="{@name}"
+                    class="marker-data">
+                    <xsl:call-template name="addEnergyTypePriceAttribute">
+                        <xsl:with-param name="type" select="'electricity'" />
+                        <xsl:with-param name="price"
+                            select="prices/price[@type='Electricity'][last()]" />
+                    </xsl:call-template>
+                    <xsl:call-template name="addEnergyTypePriceAttribute">
+                        <xsl:with-param name="type" select="'gas'" />
+                        <xsl:with-param name="price" select="prices/price[@type='Gas'][last()]" />
+                    </xsl:call-template>
+                    <xsl:call-template name="addEnergyTypePriceAttribute">
+                        <xsl:with-param name="type" select="'oil'" />
+                        <xsl:with-param name="price" select="prices/price[@type='Oil'][last()]" />
+                    </xsl:call-template>
+                </div>
             </div>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- Named template to add data attribute for energy type price -->
+    <xsl:template name="addEnergyTypePriceAttribute">
+        <xsl:param name="type" />
+    <xsl:param name="price" />
+    <xsl:if test="$price">
+            <xsl:attribute name="data-{$type}-price">
+                <xsl:value-of select="$price" />
+            </xsl:attribute>
         </xsl:if>
     </xsl:template>
 

@@ -8,9 +8,18 @@ function initializeMap() {
     return mymap;
 }
 
-function addMarkerToMap(map, lat, lng, name) {
+function addMarkerToMap(map, lat, lng, name, prices) {
+    var popupContent = "<b>" + name + "</b><br>";
+
+    // Check for each energy type before adding to popup content
+    Object.keys(prices).forEach(function (energyType) {
+        if (prices[energyType] !== null && prices[energyType] !== undefined) {
+            popupContent += "<p>" + energyType + " Price: " + prices[energyType] + " CHF</p>";
+        }
+    });
+
     var marker = L.marker([lat, lng]).addTo(map);
-    marker.bindPopup("<b>" + name + "</b><br>This is a plant.").openPopup();
+    marker.bindPopup(popupContent).openPopup();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,7 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
         var lat = element.getAttribute('data-lat');
         var lng = element.getAttribute('data-lng');
         var name = element.getAttribute('data-name');
+        var prices = {
+            'Electricity': element.getAttribute('data-electricity-price'),
+            'Gas': element.getAttribute('data-gas-price'),
+            'Oil': element.getAttribute('data-oil-price')
+        };
 
-        addMarkerToMap(mymap, lat, lng, name);
+        addMarkerToMap(mymap, lat, lng, name, prices);
     });
 });
