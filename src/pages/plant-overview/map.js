@@ -9,14 +9,21 @@ function initializeMap() {
 }
 
 function addMarkerToMap(map, lat, lng, name, prices) {
-    var popupContent = "<b>" + name + "</b><br>";
+    var popupContent = "<div class='w3-container'><b>" + name + "</b><br>";
 
-    // Check for each energy type before adding to popup content
+    var icons = {
+        'Electricity': 'fas fa-bolt',
+        'Gas': 'fas fa-fire',
+        'Oil': 'fas fa-oil-can'
+    };
+
     Object.keys(prices).forEach(function (energyType) {
         if (prices[energyType] !== null && prices[energyType] !== undefined) {
-            popupContent += "<p>" + energyType + " Price: " + prices[energyType] + " CHF</p>";
+            popupContent += "<p><i class='" + icons[energyType] + "'></i> " + energyType + " Price: <span class='w3-text-blue'>" + prices[energyType] + " CHF</span></p>";
         }
     });
+
+    popupContent += "</div>";
 
     var marker = L.marker([lat, lng]).addTo(map);
     marker.bindPopup(popupContent).openPopup();
