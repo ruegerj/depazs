@@ -1,8 +1,4 @@
-import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 import express from 'express';
 import morgan from 'morgan';
 import pageRoutes from './routes/page-routes.mjs';
@@ -18,19 +14,16 @@ export function bootstrap() {
     }
 
     // Serve static files from the node_modules directory
-    app.use(
-        '/node_modules',
-        express.static(path.join(__dirname, '..', 'node_modules')),
-    );
+    app.use('/node_modules', express.static(path.resolve('node_modules')));
 
     // serve local db file & schema
-    app.use('/database', express.static(path.join(path.resolve(), 'database')));
+    app.use('/database', express.static(path.resolve('database')));
 
     app.use(pageRoutes);
     app.use('/api', apiRoutes);
 
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'pages', 'index.html'));
+    app.get('/', (_, res) => {
+        res.sendFile(path.resolve('src', 'pages', 'index.html'));
     });
 
     return app;

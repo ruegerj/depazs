@@ -1,13 +1,12 @@
 import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
-import { cwd } from 'node:process';
+import { join, resolve } from 'node:path';
 import { Router } from 'express';
 import express from 'express';
 
 const excludedFiles = [];
 const router = Router();
 
-const pageDir = join(cwd(), 'src', 'pages');
+const pageDir = resolve('src', 'pages');
 const pages = readdirSync(pageDir, { withFileTypes: true }).filter(
     (item) => item.isDirectory() && !excludedFiles.includes(item.name),
 );
