@@ -8,7 +8,7 @@
     <xsl:template name="generateEnergyList">
         <xsl:param name="energyType" />
         <xsl:param name="color" />
-        <h2 id="{$energyType}">
+        <h2 id="{$energyType}" class="w3-container w3-text-white">
             <xsl:value-of select="$energyType" /> Plants</h2>
         <ul>
             <xsl:apply-templates
@@ -27,8 +27,8 @@
         <xsl:param name="color" />
         <xsl:if
             test="energy-types[contains(., $energyType)]">
-            <div class="w3-card-4 w3-margin w3-white w3-round-medium">
-                <h3>
+            <div class="w3-card-4 w3-margin w3-round-medium" style="background-color: #212121">
+                <h3 class="w3-text-white">
                     <xsl:attribute name="class">
                         <xsl:text>w3-container w3-round-medium w3-</xsl:text>
                         <xsl:value-of select="$color" />
@@ -39,11 +39,11 @@
                 <div class="w3-container">
                     <xsl:variable name="latestPrice"
                         select="prices/price[@type = $energyType][last()]" />
-                    <p>
+                    <p class="w3-text-white">
                         <i class="fas fa-calendar"></i>&#xA0; <xsl:value-of
                             select="concat('Latest Date: ', $latestPrice/@date)" />
                     </p>
-                    <p>
+                    <p class="w3-text-white">
                         <i class="fas fa-coins"></i>&#xA0; <xsl:value-of
                             select="concat($energyType, ' Price: ', $latestPrice, ' CHF')" />
                     </p>
@@ -72,8 +72,8 @@
     <!-- Named template to add data attribute for energy type price -->
     <xsl:template name="addEnergyTypePriceAttribute">
         <xsl:param name="type" />
-    <xsl:param name="price" />
-    <xsl:if test="$price">
+        <xsl:param name="price" />
+        <xsl:if test="$price">
             <xsl:attribute name="data-{$type}-price">
                 <xsl:value-of select="$price" />
             </xsl:attribute>
@@ -92,24 +92,23 @@
                 <script src="/node_modules/leaflet/dist/leaflet.js"></script>
                 <script src="map.js"></script>
             </head>
-            <body class="w3-container">
-                <h1>Plant Overview</h1>
+            <body style="background-color: #171717">
+                <h1 class="w3-container w3-text-white">Plant Overview</h1>
 
                 <!-- Navigation -->
                 <div class="w3-center">
                     <div class="w3-bar">
                         <a href="#Electricity"
-                            class="w3-button w3-white w3-border w3-border-black w3-round-xxlarge w3-padding-small w3-large w3-margin-right"
-                            style="width: 120px;">Electricity</a>
+                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white"
+                            style="background-color: #212121; width: 120px;">Electricity</a>
                         <a href="#Gas"
-                            class="w3-button w3-white w3-border w3-border-black w3-round-xxlarge w3-padding-small w3-large w3-margin-right"
-                            style="width: 120px;">Gas</a>
+                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white"
+                            style="background-color: #212121; width: 120px;">Gas</a>
                         <a href="#Oil"
-                            class="w3-button w3-white w3-border w3-border-black w3-round-xxlarge w3-padding-small w3-large"
-                            style="width: 120px;">Oil</a>
+                            class="w3-button w3-round-xxlarge w3-large w3-text-white"
+                            style="background-color: #212121; width: 120px;">Oil</a>
                     </div>
                 </div>
-
 
                 <!-- Generate list sections for each energy type -->
                 <xsl:call-template name="generateEnergyList">
@@ -127,7 +126,7 @@
                     <xsl:with-param name="color" select="'yellow'" />
                 </xsl:call-template>
 
-                <h2 class="w3-container">Map</h2>
+                <h2 class="w3-container w3-text-white">Map</h2>
                 <!-- Leaflet Map Div -->
                 <div id="map" class="w3-container w3-card-4 w3-white w3-round-medium"
                     style="height: 600px; width: 60%; margin: 0 auto"></div>
