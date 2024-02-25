@@ -39,9 +39,12 @@ npm run start #(start:dev -> watch-mode)
 
 # Dependencies
 
-| Package                                          | Usage                                                |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| [express](https://www.npmjs.com/package/express) | Web Server for hosting XML-Files, IO-operations etc. |
-| [dotenv](https://www.npmjs.com/package/dotenv)   | Config management (`.env` files)                     |
-| [morgan](https://www.npmjs.com/package/morgan)   | Request logger for development                       |
-| [leaflet](https://www.npmjs.com/package/leaflet) | Interactive maps library                             |
+| Package                                                                 | Usage                                                |
+| ----------------------------------------------------------------------- | ---------------------------------------------------- |
+| [express](https://www.npmjs.com/package/express)                        | Web Server for hosting XML-Files, IO-operations etc. |
+| [dotenv](https://www.npmjs.com/package/dotenv)                          | Config management (`.env` files)                     |
+| [morgan](https://www.npmjs.com/package/morgan)                          | Request logger for development                       |
+| [leaflet](https://www.npmjs.com/package/leaflet)                        | Interactive maps library                             |
+| [libxmljs2](https://npmjs.com/package/libxmljs2)                        | XML processing for NodeJS                            |
+| [font-awesome](https://npmjs.com/package/@fortawesome/fontawesome-free) | Icon library                                         |
+| [w3-css](https://npmjs.com/package/w3-css)                              | CSS Framework for styling                            |
