@@ -13,16 +13,16 @@ function addMarkerToMap(map, lat, lng, name) {
     marker.bindPopup("<b>" + name + "</b><br>This is a plant.").openPopup();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var mymap = initializeMap();
 
-    var mapElements = document.getElementsByClassName("marker-data");
+    var mapElements = Array.from(document.getElementsByClassName("marker-data"));
 
-    for (var i = 0; i < mapElements.length; i++) {
-        var lat = mapElements[i].getAttribute('data-lat');
-        var lng = mapElements[i].getAttribute('data-lng');
-        var name = mapElements[i].getAttribute('data-name');
+    mapElements.forEach(function (element) {
+        var lat = element.getAttribute('data-lat');
+        var lng = element.getAttribute('data-lng');
+        var name = element.getAttribute('data-name');
 
         addMarkerToMap(mymap, lat, lng, name);
-    }
+    });
 });
