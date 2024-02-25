@@ -10,6 +10,7 @@ import apiRoutes from './routes/api-routes.mjs';
 
 export function bootstrap() {
     const app = express();
+    app.use(express.urlencoded({ extended: true }));
 
     // Add request logger
     if (process.env.NODE_ENV === 'development') {

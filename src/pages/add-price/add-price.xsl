@@ -21,8 +21,8 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="date-input">Energy Type</label>
-                                <select name="plantName" id="plantName">
+                                <label for="energyType">Energy Type</label>
+                                <select name="energyType" id="energyType">
                                     <option value="Gas">Gas</option>
                                     <option value="Electricity">Electricity</option>
                                     <option value="Oil">Oil</option>
