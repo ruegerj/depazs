@@ -1,20 +1,28 @@
-let mymap;
-
 function initializeMap() {
-    mymap = L.map('map').setView([46.8182, 8.2275], 8);
+    var mymap = L.map('map').setView([46.8182, 8.2275], 8);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
     }).addTo(mymap);
-    console.log("Map initialized");
+
+    return mymap;
 }
 
-function addMarkerToMap(lat, lng, name) {
-    console.log("Adding marker to map");
-    var marker = L.marker([lat, lng]).addTo(mymap);
+function addMarkerToMap(map, lat, lng, name) {
+    var marker = L.marker([lat, lng]).addTo(map);
     marker.bindPopup("<b>" + name + "</b><br>This is a plant.").openPopup();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    initializeMap();
+    var mymap = initializeMap();
+
+    var mapElements = document.getElementsByClassName("marker-data");
+
+    for (var i = 0; i < mapElements.length; i++) {
+        var lat = mapElements[i].getAttribute('data-lat');
+        var lng = mapElements[i].getAttribute('data-lng');
+        var name = mapElements[i].getAttribute('data-name');
+
+        addMarkerToMap(mymap, lat, lng, name);
+    }
 });

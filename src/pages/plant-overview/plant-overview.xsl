@@ -48,18 +48,10 @@
                             select="concat($energyType, ' Price: ', $latestPrice, ' CHF')" />
                     </p>
                 </div>
+                <div data-lat="{coordinates/lat}" data-lng="{coordinates/lng}"
+                    data-name="{@name}" class="marker-data"></div>
             </div>
         </xsl:if>
-    </xsl:template>
-
-    <!-- Template to add marker using JavaScript function -->
-    <xsl:template name="addMarker">
-        <xsl:param name="lat" />
-        <xsl:param name="lng" />
-        <xsl:param name="name" />
-        <script>
-        addMarkerToMap(<xsl:value-of select="$lat" />, <xsl:value-of select="$lng" />, "<xsl:value-of
-                select="$name" />"); </script>
     </xsl:template>
 
     <!-- Main template -->
@@ -96,16 +88,6 @@
                 <h2>Map</h2>
                 <!-- Leaflet Map Div -->
                 <div id="map" style="height: 600px; width: 60%; margin: 0 auto"></div>
-
-                <!-- Add markers to the map -->
-                <xsl:call-template name="addMarker">
-                    <xsl:with-param name="lat"
-                        select="document('/database/energy-prices.xml')/energy-data/plant[1]/coordinates/lat" />
-                    <xsl:with-param name="lng"
-                        select="document('/database/energy-prices.xml')/energy-data/plant[1]/coordinates/lng" />
-                    <xsl:with-param name="name"
-                        select="document('/database/energy-prices.xml')/energy-data/plant[1]/@name" />
-                </xsl:call-template>
             </body>
         </html>
     </xsl:template>
