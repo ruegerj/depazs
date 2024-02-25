@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns="https://depazs.ch/energy-data"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="https://depazs.ch/energy-data"
-    elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="energy-data">
         <xs:complexType>
             <xs:sequence minOccurs="1" maxOccurs="unbounded">
