@@ -35,8 +35,7 @@
                             </div>
                             <div>
                                 <label for="price-input">new price</label>
-                                <input type="number" name="price" id="price-input"
-                                    placeholder="99.99" />
+                                <input type="number" name="price" id="price-input" step="0.01" placeholder="00.00" />
                             </div>
                             <button type="submit">Insert</button>
                         </form>
