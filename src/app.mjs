@@ -19,6 +19,9 @@ export function bootstrap() {
     // serve local db file & schema
     app.use('/database', express.static(path.resolve('database')));
 
+    // serve static file from /src/css directory
+    app.use('/css', express.static(path.resolve('src', 'css')));
+
     app.use(pageRoutes);
     app.use('/api', apiRoutes);
 

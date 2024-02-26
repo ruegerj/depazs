@@ -1,0 +1,6 @@
+.w3-twothird.sticky {
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 72px); /* Adjust the height according to your needs */
+    overflow-y: auto;
+}

@@ -87,6 +87,7 @@
             <head>
                 <title>DEPAZS</title>
                 <link rel="stylesheet" href="/node_modules/w3-css/w3.css" />
+                <link rel="stylesheet" type="text/css" href="../css/styles.css" />
                 <link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css" />
                 <link rel="stylesheet"
                     href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
@@ -112,7 +113,7 @@
                 </div>
 
                 <!-- Generate list sections for each energy type -->
-                <div class="w3-row">
+                <div class="w3-cell-row">
                     <div class="w3-third w3-container">
                         <xsl:call-template name="generateEnergyList">
                             <xsl:with-param name="energyType" select="'Electricity'" />
@@ -129,11 +130,11 @@
                             <xsl:with-param name="color" select="'yellow'" />
                         </xsl:call-template>
                     </div>
-                    <div class="w3-twothird w3-container">
+                    <div class="w3-twothird w3-container sticky">
                         <h2 class="w3-container w3-text-white">Map</h2>
                         <!-- Leaflet Map Div -->
                         <div id="map" class="w3-container w3-card-4 w3-white w3-round-medium"
-                            style="height: 600px; width: 100%; margin: 0 auto"></div>
+                            style="height: 600px; width: 100%; margin: 0 auto;"></div>
                     </div>
                 </div>
             </body>
