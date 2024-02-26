@@ -36,52 +36,38 @@
             name="borderWidth" select="3" />
         <xsl:variable name="gridSpacingX" select="$width div 12" />
 
-        <svg:svg>
-            <xsl:attribute name="width">
-                <xsl:value-of select="$width + $legendSize" />
-            </xsl:attribute>
-            <xsl:attribute name="height">
-                <xsl:value-of select="$height + $legendSize" />
-            </xsl:attribute>
+        <svg:svg
+            width="{$width + $legendSize}"
+            height="{$height + $legendSize}">
 
             <!-- Outline -->
-            <svg:rect x="0" y="0" fill="transparent" stroke="black">
-                <xsl:attribute name="height">
-                    <xsl:value-of select="$height + $legendSize" />
-                </xsl:attribute>
-                <xsl:attribute name="width">
-                    <xsl:value-of select="$width + $legendSize" />
-                </xsl:attribute>
-                <xsl:attribute name="stroke-width">
-                    <xsl:value-of select="$borderWidth" />
-                </xsl:attribute>
-            </svg:rect>
+            <svg:rect
+                height="{$height + $legendSize}"
+                width="{$width + $legendSize}"
+                stroke-width="{$borderWidth}"
+                x="0"
+                y="0"
+                fill="transparent"
+                stroke="black"
+            />
 
             <!-- Legend: X-Delimter -->
-            <svg:line x1="0" stroke="black">
-                <xsl:attribute name="y1">
-                    <xsl:value-of select="$height" />
-                </xsl:attribute>
-                <xsl:attribute name="x2">
-                    <xsl:value-of select="$width + $legendSize" />
-                </xsl:attribute>
-                <xsl:attribute name="y2">
-                    <xsl:value-of select="$height" />
-                </xsl:attribute>
-            </svg:line>
+            <svg:line
+                x1="0"
+                y1="{$height}"
+                x2="{$width + $legendSize}"
+                y2="{$height}"
+                stroke="black"
+            />
 
             <!-- Legend: Y-Delimiter -->
-            <svg:line y1="0" stroke="black">
-                <xsl:attribute name="x1">
-                    <xsl:value-of select="$legendSize" />
-                </xsl:attribute>
-                <xsl:attribute name="x2">
-                    <xsl:value-of select="$legendSize" />
-                </xsl:attribute>
-                <xsl:attribute name="y2">
-                    <xsl:value-of select="$height + $legendSize" />
-                </xsl:attribute>
-            </svg:line>
+            <svg:line
+                x1="{$legendSize}"
+                y1="0"
+                x2="{$legendSize}"
+                y2="{$height + $legendSize}"
+                stroke="black"
+            />
 
             <!-- Legend: Month Names -->
             <xsl:call-template name="columnLegend">
@@ -207,15 +193,9 @@
             name="columnWidth" />
 
         <svg:text
+            x="{$legendSize + ($columnWidth * ($position - 1)) + ($columnWidth div 2)}"
+            y="{$height + ($legendSize div 2)}"
             text-anchor="middle">
-            <xsl:attribute name="x">
-                <xsl:value-of
-                    select="$legendSize + ($columnWidth * ($position - 1)) + ($columnWidth div 2)" />
-            </xsl:attribute>
-            <xsl:attribute
-                name="y">
-                <xsl:value-of select="$height + ($legendSize div 2)" />
-            </xsl:attribute>
             <xsl:value-of select="$display" />
         </svg:text>
     </xsl:template>
@@ -225,17 +205,12 @@
         <xsl:param name="spacingX" />
 
         <svg:line
-            y1="0" stroke="lightgray">
-            <xsl:attribute name="x1">
-                <xsl:value-of select="$legendSize + ($position * $spacingX)" />
-            </xsl:attribute>
-            <xsl:attribute name="x2">
-                <xsl:value-of select="$legendSize + ($position * $spacingX)" />
-            </xsl:attribute>
-            <xsl:attribute name="y2">
-                <xsl:value-of select="$height" />
-            </xsl:attribute>
-        </svg:line>
+            x1="{$legendSize + ($position * $spacingX)}"
+            y1="0"
+            x2="{$legendSize + ($position * $spacingX)}"
+            y2="{$height}"
+            stroke="lightgray"
+        />
     </xsl:template>
 
 </xsl:stylesheet>
