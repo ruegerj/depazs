@@ -130,8 +130,7 @@
                     <div class="w3-twothird w3-container sticky">
                         <h2 class="w3-container w3-text-white">Map</h2>
                         <!-- Leaflet Map Div -->
-                        <div id="map" class="w3-container w3-card-4 w3-white w3-round-medium"
-                            style="height: 600px; width: 100%; margin: 0 auto;"></div>
+                        <div id="map" class="w3-container w3-card-4 w3-white w3-round-medium" />
                     </div>
                 </div>
             </body>
