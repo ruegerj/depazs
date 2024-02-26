@@ -1,3 +1,17 @@
+body {
+    background-color: #222222;
+}
+
+.w3-card-4 {
+    background-color: #323232;
+}
+
+.w3-button {
+    background-color: #323232;
+    color: #ffffff;
+    width: 120px;
+}
+
 .w3-twothird.sticky {
     position: sticky;
     top: 0;

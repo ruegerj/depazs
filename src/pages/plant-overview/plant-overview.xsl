@@ -28,7 +28,7 @@
         <xsl:param name="color" />
         <xsl:if
             test="energy-types[contains(., $energyType)]">
-            <div class="w3-card-4 w3-margin w3-round-medium" style="background-color: #212121">
+            <div class="w3-card-4 w3-round-medium">
                 <h3 class="w3-text-white">
                     <xsl:attribute name="class">
                         <xsl:text>w3-container w3-round-medium w3-</xsl:text>
@@ -94,21 +94,18 @@
                 <script src="/node_modules/leaflet/dist/leaflet.js"></script>
                 <script src="map.js"></script>
             </head>
-            <body style="background-color: #171717">
+            <body>
                 <h1 class="w3-container w3-text-white">Plant Overview</h1>
 
                 <!-- Navigation -->
                 <div class="w3-center">
                     <div class="w3-bar">
                         <a href="#Electricity"
-                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white"
-                            style="background-color: #212121; width: 120px;">Electricity</a>
+                            class="w3-button w3-round-xxlarge w3-large w3-margin-right">Electricity</a>
                         <a href="#Gas"
-                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white"
-                            style="background-color: #212121; width: 120px;">Gas</a>
+                            class="w3-button w3-round-xxlarge w3-large w3-margin-right">Gas</a>
                         <a href="#Oil"
-                            class="w3-button w3-round-xxlarge w3-large w3-text-white"
-                            style="background-color: #212121; width: 120px;">Oil</a>
+                            class="w3-button w3-round-xxlarge w3-large">Oil</a>
                     </div>
                 </div>
 
