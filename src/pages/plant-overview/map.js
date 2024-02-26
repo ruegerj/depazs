@@ -26,7 +26,7 @@ function addMarkerToMap(map, lat, lng, name, prices) {
     popupContent += "</div>";
 
     var marker = L.marker([lat, lng]).addTo(map);
-    marker.bindPopup(popupContent).openPopup();
+    marker.bindPopup(popupContent);
 }
 
 document.addEventListener("DOMContentLoaded", function () {

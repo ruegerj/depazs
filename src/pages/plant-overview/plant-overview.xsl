@@ -28,7 +28,7 @@
         <xsl:param name="color" />
         <xsl:if
             test="energy-types[contains(., $energyType)]">
-            <div class="w3-card-4 w3-round-medium">
+            <div class="w3-card-4 w3-round-medium w3-margin-top">
                 <h3 class="w3-text-white">
                     <xsl:attribute name="class">
                         <xsl:text>w3-container w3-round-medium w3-</xsl:text>
@@ -130,7 +130,8 @@
                     <div class="w3-twothird w3-container sticky">
                         <h2 class="w3-container w3-text-white">Map</h2>
                         <!-- Leaflet Map Div -->
-                        <div id="map" class="w3-container w3-card-4 w3-white w3-round-medium" />
+                        <div id="map"
+                            class="w3-container w3-card-4 w3-margin-left w3-margin-top w3-round-medium" />
                     </div>
                 </div>
             </body>
