@@ -24,9 +24,14 @@
                 <title>DEPAZS</title>
                 <link rel="stylesheet" href="/node_modules/w3-css/w3.css" />
                 <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+                <link
+                    rel="stylesheet"
+                    href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+                />
             </head>
             <body class="w3-container">
-                <h1 class="w3-text-white">Price Chart</h1>
+                <h1 class="w3-text-white">Price Chart - <xsl:value-of select="$displayYear" />
+                </h1>
 
                 <xsl:apply-templates
                     select="document('/database/energy-prices.xml')/energy-data/plant">
@@ -51,199 +56,217 @@
             name="plantMaxPrice"
             select="(//price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text()[not(. &lt; //price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text())])[1]" />
 
-        <h2
-            class="w3-text-white">
-            <xsl:value-of select="@name" />
-        </h2>
+        <div
+            class="w3-container">
+            <h2
+                class="w3-text-white">
+                <xsl:value-of select="@name" />
+            </h2>
 
-        <svg:svg
-            width="{$width + $legendPadding}"
-            height="{$height + $legendPadding}">
-
-            <!-- Outline -->
-            <svg:rect
-                height="{$height + $legendPadding}"
+            <svg:svg
                 width="{$width + $legendPadding}"
-                stroke-width="3"
-                x="0"
-                y="0"
-                fill="transparent"
-                stroke="white"
-            />
+                height="{$height + $legendPadding}">
 
-            <!-- Legend: X-Delimter -->
-            <svg:line
-                x1="0"
-                y1="{$height}"
-                x2="{$width + $legendPadding}"
-                y2="{$height}"
-                stroke="white"
-            />
+                <!-- Outline -->
+                <svg:rect
+                    height="{$height + $legendPadding}"
+                    width="{$width + $legendPadding}"
+                    stroke-width="3"
+                    x="0"
+                    y="0"
+                    fill="transparent"
+                    stroke="white"
+                />
 
-            <!-- Legend: Y-Delimiter -->
-            <svg:line
-                x1="{$legendPadding}"
-                y1="0"
-                x2="{$legendPadding}"
-                y2="{$height + $legendPadding}"
-                stroke="white"
-            />
+                <!-- Legend: X-Delimter -->
+                <svg:line
+                    x1="0"
+                    y1="{$height}"
+                    x2="{$width + $legendPadding}"
+                    y2="{$height}"
+                    stroke="white"
+                />
 
-            <!-- Legend: Month Names -->
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'JAN'" />
-                <xsl:with-param name="position" select="1" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'FEB'" />
-                <xsl:with-param name="position" select="2" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'MAR'" />
-                <xsl:with-param name="position" select="3" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'APR'" />
-                <xsl:with-param name="position" select="4" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'MAY'" />
-                <xsl:with-param name="position" select="5" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'JUN'" />
-                <xsl:with-param name="position" select="6" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'JUL'" />
-                <xsl:with-param name="position" select="7" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'AUG'" />
-                <xsl:with-param name="position" select="8" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'SEP'" />
-                <xsl:with-param name="position" select="9" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'OCT'" />
-                <xsl:with-param name="position" select="10" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'NOV'" />
-                <xsl:with-param name="position" select="11" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="columnLegend">
-                <xsl:with-param name="display" select="'DEC'" />
-                <xsl:with-param name="position" select="12" />
-                <xsl:with-param name="columnWidth" select="$gridSpacingX" />
-            </xsl:call-template>
+                <!-- Legend: Y-Delimiter -->
+                <svg:line
+                    x1="{$legendPadding}"
+                    y1="0"
+                    x2="{$legendPadding}"
+                    y2="{$height + $legendPadding}"
+                    stroke="white"
+                />
 
-            <!-- Legend: min, max & avg price -->
-            <xsl:call-template name="rowLegend">
-                <xsl:with-param name="display" select="$plantMaxPrice" />
-                <xsl:with-param name="heightY" select="$graphPadding" />
-            </xsl:call-template>
-            <xsl:call-template name="rowLegend">
-                <xsl:with-param name="display" select="$avgPrice" />
-                <xsl:with-param name="heightY" select="$graphPadding + floor($actualHeight div 2)" />
-            </xsl:call-template>
-            <xsl:call-template name="rowLegend">
-                <xsl:with-param name="display" select="$plantMinPrice" />
-                <xsl:with-param name="heightY" select="$graphPadding + $actualHeight" />
-            </xsl:call-template>
+                <!-- Legend: Month Names -->
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'JAN'" />
+                    <xsl:with-param name="position" select="1" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'FEB'" />
+                    <xsl:with-param name="position" select="2" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'MAR'" />
+                    <xsl:with-param name="position" select="3" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'APR'" />
+                    <xsl:with-param name="position" select="4" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'MAY'" />
+                    <xsl:with-param name="position" select="5" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'JUN'" />
+                    <xsl:with-param name="position" select="6" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'JUL'" />
+                    <xsl:with-param name="position" select="7" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'AUG'" />
+                    <xsl:with-param name="position" select="8" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'SEP'" />
+                    <xsl:with-param name="position" select="9" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'OCT'" />
+                    <xsl:with-param name="position" select="10" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'NOV'" />
+                    <xsl:with-param name="position" select="11" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="columnLegend">
+                    <xsl:with-param name="display" select="'DEC'" />
+                    <xsl:with-param name="position" select="12" />
+                    <xsl:with-param name="columnWidth" select="$gridSpacingX" />
+                </xsl:call-template>
 
+                <!-- Legend: min, max & avg price -->
+                <xsl:call-template name="rowLegend">
+                    <xsl:with-param name="display" select="$plantMaxPrice" />
+                    <xsl:with-param name="heightY" select="$graphPadding" />
+                </xsl:call-template>
+                <xsl:call-template name="rowLegend">
+                    <xsl:with-param name="display" select="$avgPrice" />
+                    <xsl:with-param name="heightY"
+                        select="$graphPadding + floor($actualHeight div 2)" />
+                </xsl:call-template>
+                <xsl:call-template name="rowLegend">
+                    <xsl:with-param name="display" select="$plantMinPrice" />
+                    <xsl:with-param name="heightY" select="$graphPadding + $actualHeight" />
+                </xsl:call-template>
 
-            <!-- Graph Grid (vertical) -->
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="1" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="2" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="3" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="4" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="5" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="6" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="7" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="8" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="9" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="10" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="11" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
-            <xsl:call-template name="verticalGridLine">
-                <xsl:with-param name="position" select="12" />
-                <xsl:with-param name="spacingX" select="$gridSpacingX" />
-            </xsl:call-template>
+                <!-- Graph Grid (vertical) -->
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="1" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="2" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="3" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="4" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="5" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="6" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="7" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="8" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="9" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="10" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="11" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
+                <xsl:call-template name="verticalGridLine">
+                    <xsl:with-param name="position" select="12" />
+                    <xsl:with-param name="spacingX" select="$gridSpacingX" />
+                </xsl:call-template>
 
-            <!-- Graph Grid (horizontal) -->
-            <xsl:call-template name="horizontalGridLine">
-                <xsl:with-param name="heightY" select="$graphPadding" />
-            </xsl:call-template>
-            <xsl:call-template name="horizontalGridLine">
-                <xsl:with-param name="heightY" select="$graphPadding + floor($actualHeight div 2)" />
-            </xsl:call-template>
-            <xsl:call-template name="horizontalGridLine">
-                <xsl:with-param name="heightY" select="$graphPadding + $actualHeight" />
-            </xsl:call-template>
+                <!-- Graph Grid (horizontal) -->
+                <xsl:call-template name="horizontalGridLine">
+                    <xsl:with-param name="heightY" select="$graphPadding" />
+                </xsl:call-template>
+                <xsl:call-template name="horizontalGridLine">
+                    <xsl:with-param name="heightY"
+                        select="$graphPadding + floor($actualHeight div 2)" />
+                </xsl:call-template>
+                <xsl:call-template name="horizontalGridLine">
+                    <xsl:with-param name="heightY" select="$graphPadding + $actualHeight" />
+                </xsl:call-template>
 
-            <!-- Chart Lines -->
-            <xsl:apply-templates select="prices">
-                <xsl:with-param name="plant" select="@name" />
-                <xsl:with-param name="energyType" select="'Electricity'" />
-                <xsl:with-param name="color" select="'#2196F3'" />
-            </xsl:apply-templates>
-            <xsl:apply-templates select="prices">
-                <xsl:with-param name="plant" select="@name" />
-                <xsl:with-param name="energyType" select="'Gas'" />
-                <xsl:with-param name="color" select="'#4CAF50'" />
-            </xsl:apply-templates>
-            <xsl:apply-templates select="prices">
-                <xsl:with-param name="plant" select="@name" />
-                <xsl:with-param name="energyType" select="'Oil'" />
-                <xsl:with-param name="color" select="'#ffeb3b'" />
-            </xsl:apply-templates>
-        </svg:svg>
+                <!-- Chart Lines -->
+                <xsl:apply-templates select="prices">
+                    <xsl:with-param name="plant" select="@name" />
+                    <xsl:with-param name="energyType" select="'Electricity'" />
+                    <xsl:with-param name="color" select="'#2196F3'" />
+                </xsl:apply-templates>
+                <xsl:apply-templates select="prices">
+                    <xsl:with-param name="plant" select="@name" />
+                    <xsl:with-param name="energyType" select="'Gas'" />
+                    <xsl:with-param name="color" select="'#4CAF50'" />
+                </xsl:apply-templates>
+                <xsl:apply-templates select="prices">
+                    <xsl:with-param name="plant" select="@name" />
+                    <xsl:with-param name="energyType" select="'Oil'" />
+                    <xsl:with-param name="color" select="'#ffeb3b'" />
+                </xsl:apply-templates>
+            </svg:svg>
+            <div>
+                <xsl:if test="count(prices/price[@type = 'Electricity']) &gt; 0">
+                    <span class="w3-tag w3-blue">
+                        <i class="fa-solid fa-plug"></i> Electricity </span>
+                </xsl:if>
+                <xsl:if test="count(prices/price[@type = 'Gas']) &gt; 0">
+                    <span class="w3-tag w3-green">
+                        <i class="fa-solid fa-fire-flame-simple"></i> Gas </span>
+                </xsl:if>
+                <xsl:if test="count(prices/price[@type = 'Oil']) &gt; 0">
+                    <span class="w3-tag w3-yellow">
+                        <i class="fa-solid fa-gas-pump"></i> Oil</span>
+                </xsl:if>
+            </div>
+        </div>
     </xsl:template>
 
     <!-- Chart Line for Energy Type -->
