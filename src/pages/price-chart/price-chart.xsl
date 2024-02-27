@@ -57,7 +57,7 @@
             select="(//price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text()[not(. &lt; //price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text())])[1]" />
 
         <div
-            class="w3-container">
+            class="w3-container w3-cell w3-half w3-margin-bottom">
             <h2
                 class="w3-text-white">
                 <xsl:value-of select="@name" />
