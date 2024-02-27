@@ -16,7 +16,13 @@ for (const page of pages) {
     const xlsPath = join(page.path, page.name, `${page.name}.xsl`);
     const jsPath = join(page.path, page.name, `${page.name}.js`);
 
-    router.get(`/${page.name}`, serveCachedFile(xmlPath));
+    let pagePath = `/${page.name}`;
+
+    if (page.name === 'index') {
+        pagePath = '/';
+    }
+
+    router.get(pagePath, serveCachedFile(xmlPath));
     router.get(`/${page.name}/${page.name}.xsl`, serveCachedFile(xlsPath));
 
     if (existsSync(jsPath)) {
