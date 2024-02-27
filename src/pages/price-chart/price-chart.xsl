@@ -288,7 +288,7 @@
             select="$actualHeight div $priceRange" />
 
         <xsl:variable name="x"
-            select="floor($legendPadding + ($legendPadding * ($month - 1)) + ($dayWidth * ($day - 1)))" />
+            select="floor($legendPadding + ($monthWidth * ($month - 1)) + ($dayWidth * ($day - 1)))" />
         <xsl:variable
             name="y"
             select="floor((number(text()) - $minPrice) * $priceSpacing) + $graphPadding" />
