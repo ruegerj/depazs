@@ -11,7 +11,10 @@
     <xsl:variable name="width" select="600" />
     <xsl:variable
         name="height" select="300" />
-    <xsl:variable name="legendSize" select="50" />
+    <xsl:variable name="legendPadding" select="50" />
+    <xsl:variable name="graphPadding" select="50" />
+    <xsl:variable name="actualHeight"
+        select="$height - (2 * $graphPadding)" />
 
     <!-- Main template -->
     <xsl:template
@@ -34,20 +37,31 @@
     <!-- Plant Price Graph -->
     <xsl:template
         match="plant">
-        <xsl:variable name="gridSpacingX" select="$width div 12" />
+        <xsl:variable name="plantName" select="@name" />
+        <xsl:variable name="gridSpacingX"
+            select="$width div 12" />
+        <xsl:variable name="avgPrice"
+            select="round(sum(prices/price[substring-before(@date, '-') = $displayYear]/text()) div count(prices/price[substring-before(@date, '-') = $displayYear]/text()))" />
+        <!-- min & max values in XLST 1.0, see https://stackoverflow.com/a/15118076 -->
+        <xsl:variable
+            name="plantMinPrice"
+            select="(//price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text()[not(. &gt; //price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text())])[1]" />
+        <xsl:variable
+            name="plantMaxPrice"
+            select="(//price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text()[not(. &lt; //price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text())])[1]" />
 
-        <h1>
+        <h2>
             <xsl:value-of select="@name" />
-        </h1>
+        </h2>
 
         <svg:svg
-            width="{$width + $legendSize}"
-            height="{$height + $legendSize}">
+            width="{$width + $legendPadding}"
+            height="{$height + $legendPadding}">
 
             <!-- Outline -->
             <svg:rect
-                height="{$height + $legendSize}"
-                width="{$width + $legendSize}"
+                height="{$height + $legendPadding}"
+                width="{$width + $legendPadding}"
                 stroke-width="3"
                 x="0"
                 y="0"
@@ -59,17 +73,17 @@
             <svg:line
                 x1="0"
                 y1="{$height}"
-                x2="{$width + $legendSize}"
+                x2="{$width + $legendPadding}"
                 y2="{$height}"
                 stroke="black"
             />
 
             <!-- Legend: Y-Delimiter -->
             <svg:line
-                x1="{$legendSize}"
+                x1="{$legendPadding}"
                 y1="0"
-                x2="{$legendSize}"
-                y2="{$height + $legendSize}"
+                x2="{$legendPadding}"
+                y2="{$height + $legendPadding}"
                 stroke="black"
             />
 
@@ -135,8 +149,22 @@
                 <xsl:with-param name="columnWidth" select="$gridSpacingX" />
             </xsl:call-template>
 
+            <!-- Legend: min, max & avg price -->
+            <xsl:call-template name="rowLegend">
+                <xsl:with-param name="display" select="$plantMaxPrice" />
+                <xsl:with-param name="heightY" select="$graphPadding" />
+            </xsl:call-template>
+            <xsl:call-template name="rowLegend">
+                <xsl:with-param name="display" select="$avgPrice" />
+                <xsl:with-param name="heightY" select="$graphPadding + floor($actualHeight div 2)" />
+            </xsl:call-template>
+            <xsl:call-template name="rowLegend">
+                <xsl:with-param name="display" select="$plantMinPrice" />
+                <xsl:with-param name="heightY" select="$graphPadding + $actualHeight" />
+            </xsl:call-template>
 
-            <!-- Graph Grid (vertical lines) -->
+
+            <!-- Graph Grid (vertical) -->
             <xsl:call-template name="verticalGridLine">
                 <xsl:with-param name="position" select="1" />
                 <xsl:with-param name="spacingX" select="$gridSpacingX" />
@@ -184,6 +212,17 @@
             <xsl:call-template name="verticalGridLine">
                 <xsl:with-param name="position" select="12" />
                 <xsl:with-param name="spacingX" select="$gridSpacingX" />
+            </xsl:call-template>
+
+            <!-- Graph Grid (horizontal) -->
+            <xsl:call-template name="horizontalGridLine">
+                <xsl:with-param name="heightY" select="$graphPadding" />
+            </xsl:call-template>
+            <xsl:call-template name="horizontalGridLine">
+                <xsl:with-param name="heightY" select="$graphPadding + floor($actualHeight div 2)" />
+            </xsl:call-template>
+            <xsl:call-template name="horizontalGridLine">
+                <xsl:with-param name="heightY" select="$graphPadding + $actualHeight" />
             </xsl:call-template>
 
             <!-- Chart Lines -->
@@ -235,8 +274,6 @@
         <xsl:param name="minPrice" />
         <xsl:param name="maxPrice" />
 
-        <xsl:variable name="heightPadding"
-            select="50" />
         <xsl:variable name="monthWidth"
             select="$width div 12" />
         <xsl:variable name="dayWidth" select="$monthWidth div 30" />
@@ -247,20 +284,19 @@
             name="day" select="number(substring-after(substring-after(@date, '-'), '-'))" />
         <xsl:variable
             name="priceRange" select="$maxPrice - $minPrice" />
-        <xsl:variable name="actualHeight"
-            select="$height - (2 * $heightPadding)" />
         <xsl:variable name="priceSpacing"
             select="$actualHeight div $priceRange" />
 
         <xsl:variable name="x"
-            select="floor($legendSize + ($legendSize * ($month - 1)) + ($dayWidth * ($day - 1)))" />
+            select="floor($legendPadding + ($legendPadding * ($month - 1)) + ($dayWidth * ($day - 1)))" />
         <xsl:variable
-            name="y" select="floor((number(text()) - $minPrice) * $priceSpacing) + $heightPadding" />
+            name="y"
+            select="floor((number(text()) - $minPrice) * $priceSpacing) + $graphPadding" />
 
         <xsl:if
             test="position() = 1">
             <xsl:value-of
-                select="concat('M ', $legendSize, ' ', $height, ' L ', $x, ' ', $y, ' ')" />
+                select="concat('M ', $x, ' ', $y, ' ')" />
         </xsl:if>
         <xsl:if
             test="position() &gt; 1">
@@ -277,11 +313,25 @@
             name="columnWidth" />
 
         <svg:text
-            x="{$legendSize + ($columnWidth * ($position - 1)) + ($columnWidth div 2)}"
-            y="{$height + ($legendSize div 2)}"
+            x="{$legendPadding + ($columnWidth * ($position - 1)) + ($columnWidth div 2)}"
+            y="{$height + ($legendPadding div 2)}"
             text-anchor="middle">
             <xsl:value-of select="$display" />
         </svg:text>
+    </xsl:template>
+
+    <xsl:template name="rowLegend">
+        <xsl:param name="display" />
+        <xsl:param name="heightY" />
+
+        <svg:text
+            x="{$legendPadding div 2}"
+            y="{$heightY}"
+            text-anchor="left"
+            dominant-baseline="middle">
+            <xsl:value-of select="$display" />
+        </svg:text>
+
     </xsl:template>
 
     <xsl:template
@@ -290,10 +340,22 @@
         <xsl:param name="spacingX" />
 
         <svg:line
-            x1="{$legendSize + ($position * $spacingX)}"
+            x1="{$legendPadding + ($position * $spacingX)}"
             y1="0"
-            x2="{$legendSize + ($position * $spacingX)}"
+            x2="{$legendPadding + ($position * $spacingX)}"
             y2="{$height}"
+            stroke="lightgray"
+        />
+    </xsl:template>
+
+    <xsl:template name="horizontalGridLine">
+        <xsl:param name="heightY" />
+
+        <svg:line
+            x1="{$legendPadding}"
+            y1="{$heightY}"
+            x2="{$legendPadding + $width}"
+            y2="{$heightY}"
             stroke="lightgray"
         />
     </xsl:template>
