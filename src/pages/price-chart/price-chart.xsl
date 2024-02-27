@@ -255,15 +255,15 @@
             <div>
                 <xsl:if test="count(prices/price[@type = 'Electricity']) &gt; 0">
                     <span class="w3-tag w3-blue">
-                        <i class="fa-solid fa-plug"></i> Electricity </span>
+                        <i class="fas fa-bolt"></i> Electricity </span>
                 </xsl:if>
                 <xsl:if test="count(prices/price[@type = 'Gas']) &gt; 0">
                     <span class="w3-tag w3-green">
-                        <i class="fa-solid fa-fire-flame-simple"></i> Gas </span>
+                        <i class="fas fa-fire"></i> Gas </span>
                 </xsl:if>
                 <xsl:if test="count(prices/price[@type = 'Oil']) &gt; 0">
                     <span class="w3-tag w3-yellow">
-                        <i class="fa-solid fa-gas-pump"></i> Oil</span>
+                        <i class="fas fa-oil-can"></i> Oil</span>
                 </xsl:if>
             </div>
         </div>
