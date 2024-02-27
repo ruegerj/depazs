@@ -37,6 +37,9 @@
         <div class="w3-third">
 
             <a href="/plant-overview">
+                <xsl:attribute name="href">
+                    <xsl:value-of select="link" />
+                </xsl:attribute>
                 <div class="w3-container w3-dark-gray w3-padding-16">
                     <div class="w3-center">
                         <i class="fas w3-xxxlarge">
