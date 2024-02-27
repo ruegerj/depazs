@@ -6,13 +6,16 @@
     <xsl:output doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
         doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
 
-    <xsl:variable name="displayYear" select="2024" />
+    <xsl:variable
+        name="displayYear" select="'2024'" />
     <xsl:variable name="width" select="600" />
-    <xsl:variable name="height" select="300" />
+    <xsl:variable
+        name="height" select="300" />
     <xsl:variable name="legendSize" select="50" />
 
     <!-- Main template -->
-    <xsl:template match="page">
+    <xsl:template
+        match="page">
         <html>
             <head>
                 <title>DEPAZS</title>
@@ -21,20 +24,21 @@
             <body class="w3-container">
                 <h1>Price Chart</h1>
 
-                <xsl:call-template name="priceGraph">
-                    <xsl:with-param name="year" select="displayYear"></xsl:with-param>
-                </xsl:call-template>
+                <xsl:apply-templates
+                    select="document('/database/energy-prices.xml')/energy-data/plant">
+                </xsl:apply-templates>
             </body>
         </html>
     </xsl:template>
 
-    <!-- Graph -->
-    <xsl:template name="priceGraph">
-        <xsl:param name="year" />
-
-        <xsl:variable
-            name="borderWidth" select="3" />
+    <!-- Plant Price Graph -->
+    <xsl:template
+        match="plant">
         <xsl:variable name="gridSpacingX" select="$width div 12" />
+
+        <h1>
+            <xsl:value-of select="@name" />
+        </h1>
 
         <svg:svg
             width="{$width + $legendSize}"
@@ -44,7 +48,7 @@
             <svg:rect
                 height="{$height + $legendSize}"
                 width="{$width + $legendSize}"
-                stroke-width="{$borderWidth}"
+                stroke-width="3"
                 x="0"
                 y="0"
                 fill="transparent"
@@ -181,12 +185,92 @@
                 <xsl:with-param name="position" select="12" />
                 <xsl:with-param name="spacingX" select="$gridSpacingX" />
             </xsl:call-template>
+
+            <!-- Chart Lines -->
+            <xsl:apply-templates select="prices">
+                <xsl:with-param name="plant" select="@name" />
+                <xsl:with-param name="energyType" select="'Electricity'" />
+                <xsl:with-param name="color" select="'#2196F3'" />
+            </xsl:apply-templates>
+            <xsl:apply-templates select="prices">
+                <xsl:with-param name="plant" select="@name" />
+                <xsl:with-param name="energyType" select="'Gas'" />
+                <xsl:with-param name="color" select="'#4CAF50'" />
+            </xsl:apply-templates>
+            <xsl:apply-templates select="prices">
+                <xsl:with-param name="plant" select="@name" />
+                <xsl:with-param name="energyType" select="'Oil'" />
+                <xsl:with-param name="color" select="'#ffeb3b'" />
+            </xsl:apply-templates>
         </svg:svg>
     </xsl:template>
 
+    <!-- Chart Line for Energy Type -->
+    <xsl:template match="prices">
+        <xsl:param name="plant" />
+        <xsl:param name="energyType" />
+        <xsl:param name="color" />
+
+        <xsl:if
+            test="count(price[@type = $energyType and substring-before(@date, '-') = $displayYear]) &gt; 0">
+            <svg:path stroke="{$color}" stroke-width="3" fill="transparent">
+                <xsl:attribute name="d">
+                    <xsl:apply-templates
+                        select="price[@type = $energyType and substring-before(@date, '-') = $displayYear]">
+                        <xsl:sort select="@date" order="ascending" />
+
+                        <!-- min & max values in XLST 1.0, see https://stackoverflow.com/a/15118076 -->
+                        <xsl:with-param name="minPrice"
+                            select="(//price[../../@name = $plant and substring-before(@date, '-') = $displayYear]/text()[not(. &gt; //price[../../@name = $plant and substring-before(@date, '-') = $displayYear]/text())])[1]" />
+                        <xsl:with-param name="maxPrice"
+                            select="(//price[../../@name = $plant and substring-before(@date, '-') = $displayYear]/text()[not(. &lt; //price[../../@name = $plant and substring-before(@date, '-') = $displayYear]/text())])[1]" />
+                    </xsl:apply-templates>
+                </xsl:attribute>
+            </svg:path>
+        </xsl:if>
+    </xsl:template>
+
+    <!-- Path Fragment for Price -->
+    <xsl:template match="price">
+        <xsl:param name="minPrice" />
+        <xsl:param name="maxPrice" />
+
+        <xsl:variable name="heightPadding"
+            select="50" />
+        <xsl:variable name="monthWidth"
+            select="$width div 12" />
+        <xsl:variable name="dayWidth" select="$monthWidth div 30" />
+        <xsl:variable
+            name="month"
+            select="number(substring-before(substring-after(@date, '-'), '-'))" />
+        <xsl:variable
+            name="day" select="number(substring-after(substring-after(@date, '-'), '-'))" />
+        <xsl:variable
+            name="priceRange" select="$maxPrice - $minPrice" />
+        <xsl:variable name="actualHeight"
+            select="$height - (2 * $heightPadding)" />
+        <xsl:variable name="priceSpacing"
+            select="$actualHeight div $priceRange" />
+
+        <xsl:variable name="x"
+            select="floor($legendSize + ($legendSize * ($month - 1)) + ($dayWidth * ($day - 1)))" />
+        <xsl:variable
+            name="y" select="floor((number(text()) - $minPrice) * $priceSpacing) + $heightPadding" />
+
+        <xsl:if
+            test="position() = 1">
+            <xsl:value-of
+                select="concat('M ', $legendSize, ' ', $height, ' L ', $x, ' ', $y, ' ')" />
+        </xsl:if>
+        <xsl:if
+            test="position() &gt; 1">
+            <xsl:value-of select="concat('L ', $x, ' ', $y, ' ')" />
+        </xsl:if>
+    </xsl:template>
 
     <!-- Helpers -->
-    <xsl:template name="columnLegend">
+    <xsl:template
+        name="columnLegend">
         <xsl:param name="display" />
         <xsl:param name="position" />
         <xsl:param
@@ -200,7 +284,8 @@
         </svg:text>
     </xsl:template>
 
-    <xsl:template name="verticalGridLine">
+    <xsl:template
+        name="verticalGridLine">
         <xsl:param name="position" />
         <xsl:param name="spacingX" />
 
