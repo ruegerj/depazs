@@ -1,35 +1,27 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { Router } from 'express';
-import express from 'express';
+import { serveCachedFile } from '../middleware/file-cache.mjs';
 
-const excludedFiles = [];
+const excludedDirs = [];
 const router = Router();
 
 const pageDir = resolve('src', 'pages');
 const pages = readdirSync(pageDir, { withFileTypes: true }).filter(
-    (item) => item.isDirectory() && !excludedFiles.includes(item.name),
+    (item) => item.isDirectory() && !excludedDirs.includes(item.name),
 );
 
 for (const page of pages) {
-    const jsDir = join(page.path, page.name);
-    router.use(`/${page.name}`, express.static(jsDir));
-
     const xmlPath = join(page.path, page.name, `${page.name}.xml`);
-    const xslPath = join(page.path, page.name, `${page.name}.xsl`);
+    const xlsPath = join(page.path, page.name, `${page.name}.xsl`);
+    const jsPath = join(page.path, page.name, `${page.name}.js`);
 
-    router.get(`/${page.name}`, loadFileHandler(xmlPath));
-    router.get(`/${page.name}.xsl`, loadFileHandler(xslPath));
+    router.get(`/${page.name}`, serveCachedFile(xmlPath));
+    router.get(`/${page.name}/${page.name}.xsl`, serveCachedFile(xlsPath));
+
+    if (existsSync(jsPath)) {
+        router.get(`/${page.name}/${page.name}.js`, serveCachedFile(jsPath));
+    }
 }
 
 export default router;
-
-function loadFileHandler(path) {
-    // keep file content in memory
-    const file = readFileSync(path, { encoding: 'utf-8' });
-
-    return (_, res) => {
-        res.setHeader('Content-Type', 'text/xml');
-        res.send(file);
-    };
-}

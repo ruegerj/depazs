@@ -92,24 +92,24 @@
                 <link rel="stylesheet"
                     href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
                 <script src="/node_modules/leaflet/dist/leaflet.js"></script>
-                <script src="map.js"></script>
+                <script src="plant-overview.js"></script>
                 <style>
                     .w3-button {
-                        background-color: #323232;
-                        width: 120px;
+                    background-color: #323232;
+                    width: 120px;
                     }
 
                     .w3-twothird.sticky {
-                        position: sticky;
-                        top: 0;
-                        height: calc(100vh - 72px);
-                        overflow-y: auto;
+                    position: sticky;
+                    top: 0;
+                    height: calc(100vh - 72px);
+                    overflow-y: auto;
                     }
 
                     #map {
-                        height: calc(100% - 80px);
-                        width: 95%;
-                        margin: 0 auto;
+                    height: calc(100% - 80px);
+                    width: 95%;
+                    margin: 0 auto;
                     }
                 </style>
             </head>
@@ -120,9 +120,11 @@
                 <div class="w3-center">
                     <div class="w3-bar">
                         <a href="#Electricity"
-                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white">Electricity</a>
+                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white">
+        Electricity</a>
                         <a href="#Gas"
-                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white">Gas</a>
+                            class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white">
+        Gas</a>
                         <a href="#Oil"
                             class="w3-button w3-round-xxlarge w3-large w3-text-white">Oil</a>
                     </div>
