@@ -23,9 +23,10 @@
             <head>
                 <title>DEPAZS</title>
                 <link rel="stylesheet" href="/node_modules/w3-css/w3.css" />
+                <link rel="stylesheet" type="text/css" href="../css/styles.css" />
             </head>
             <body class="w3-container">
-                <h1>Price Chart</h1>
+                <h1 class="w3-text-white">Price Chart</h1>
 
                 <xsl:apply-templates
                     select="document('/database/energy-prices.xml')/energy-data/plant">
@@ -50,7 +51,8 @@
             name="plantMaxPrice"
             select="(//price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text()[not(. &lt; //price[../../@name = $plantName and substring-before(@date, '-') = $displayYear]/text())])[1]" />
 
-        <h2>
+        <h2
+            class="w3-text-white">
             <xsl:value-of select="@name" />
         </h2>
 
@@ -66,7 +68,7 @@
                 x="0"
                 y="0"
                 fill="transparent"
-                stroke="black"
+                stroke="white"
             />
 
             <!-- Legend: X-Delimter -->
@@ -75,7 +77,7 @@
                 y1="{$height}"
                 x2="{$width + $legendPadding}"
                 y2="{$height}"
-                stroke="black"
+                stroke="white"
             />
 
             <!-- Legend: Y-Delimiter -->
@@ -84,7 +86,7 @@
                 y1="0"
                 x2="{$legendPadding}"
                 y2="{$height + $legendPadding}"
-                stroke="black"
+                stroke="white"
             />
 
             <!-- Legend: Month Names -->
@@ -315,7 +317,8 @@
         <svg:text
             x="{$legendPadding + ($columnWidth * ($position - 1)) + ($columnWidth div 2)}"
             y="{$height + ($legendPadding div 2)}"
-            text-anchor="middle">
+            text-anchor="middle"
+            fill="white">
             <xsl:value-of select="$display" />
         </svg:text>
     </xsl:template>
@@ -328,7 +331,8 @@
             x="{$legendPadding div 2}"
             y="{$heightY}"
             text-anchor="left"
-            dominant-baseline="middle">
+            dominant-baseline="middle"
+            fill="white">
             <xsl:value-of select="$display" />
         </svg:text>
 
