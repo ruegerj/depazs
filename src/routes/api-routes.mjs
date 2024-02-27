@@ -39,7 +39,7 @@ router.post('/addEnergyPrice', async (req, res) => {
 
     await writeFile(dbPath, database.toString(), 'utf-8');
 
-    res.send('OK');
+    res.redirect('/add-price');
 });
 
 async function getXmlDocument(filePath) {
