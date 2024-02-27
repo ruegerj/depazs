@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="menu.xsl"?>
+
+<pages>
+    <page>
+        <link>/add-price</link>
+        <name>Add Price</name>
+        <iconName>file-circle-plus</iconName>
+    </page>
+    <page>
+        <link>/price-chart</link>
+        <name>Price Chart</name>
+        <iconName>chart-line</iconName>
+    </page>
+    <page>
+        <link>/plant-overview</link>
+        <name>Plant Overview</name>
+        <iconName>map</iconName>
+    </page>
+</pages>
