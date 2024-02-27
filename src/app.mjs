@@ -26,7 +26,7 @@ export function bootstrap() {
     app.use('/api', apiRoutes);
 
     app.get('/', (_, res) => {
-        res.sendFile(path.resolve('src', 'pages', 'index.html'));
+        res.sendFile(path.resolve('src', 'pages', 'menu', 'menu.xml'));
     });
 
     return app;
