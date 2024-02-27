@@ -18,11 +18,6 @@
             <xs:all>
                 <xs:element name="coordinates" type="coordinates" />
                 <xs:element name="region-radius" type="xs:unsignedInt" />
-                <xs:element name="energy-types">
-                    <xs:simpleType>
-                        <xs:list itemType="energyType" />
-                    </xs:simpleType>
-                </xs:element>
                 <xs:element name="prices">
                     <xs:complexType>
                         <xs:sequence minOccurs="1" maxOccurs="unbounded">

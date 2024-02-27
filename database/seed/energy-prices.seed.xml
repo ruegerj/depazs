@@ -7,10 +7,6 @@
             <lng>8.310853454784484</lng>
         </coordinates>
         <region-radius>50</region-radius>
-        <energy-types>
-            Gas
-            Electricity
-        </energy-types>
         <prices>
             <price type="Electricity" date="2024-01-15">25</price>
             <price type="Electricity" date="2024-03-05">18</price>
@@ -30,9 +26,6 @@
             <lng>8.05974145480201</lng>
         </coordinates>
         <region-radius>30</region-radius>
-        <energy-types>
-            Electricity
-        </energy-types>
         <prices>
             <price type="Electricity" date="2024-01-15">28</price>
             <price type="Electricity" date="2024-03-05">20</price>
@@ -47,9 +40,6 @@
             <lng>8.544450453962556</lng>
         </coordinates>
         <region-radius>70</region-radius>
-        <energy-types>
-            Oil
-        </energy-types>
         <prices>
             <price type="Oil" date="2024-01-15">55</price>
             <price type="Oil" date="2024-03-05">42</price>
@@ -64,9 +54,6 @@
             <lng>7.404967668270281</lng>
         </coordinates>
         <region-radius>100</region-radius>
-        <energy-types>
-            Electricity
-        </energy-types>
         <prices>
             <price type="Electricity" date="2024-01-15">27</price>
             <price type="Electricity" date="2024-03-05">19</price>
