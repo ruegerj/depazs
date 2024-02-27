@@ -353,7 +353,7 @@
         <svg:text
             x="{$legendPadding div 2}"
             y="{$heightY}"
-            text-anchor="left"
+            text-anchor="middle"
             dominant-baseline="middle"
             fill="white">
             <xsl:value-of select="$display" />
