@@ -10,8 +10,8 @@
             </head>
             <body style="background-color: #171717">
                 <h1 class="w3-container w3-text-white">Feature #01 Add Price</h1>
-                <div class="w3-card-4 w3-margin w3-round-medium" style="background-color: #212121">
-                    <h3 class="w3-text-white w3-container w3-round-medium w3-green">Add Plant</h3>
+                <div class="w3-card-4 w3-round-medium w3-third w3-display-middle" style="background-color: #212121">
+                    <h3 class="w3-text-white w3-container w3-round-medium w3-green" style="margin-top: 0">Add Plant</h3>
                     <div class="w3-container w3-text-white">
                         <form class="w3-container" action="/api/addEnergyPrice" method="post">
                             <p>
