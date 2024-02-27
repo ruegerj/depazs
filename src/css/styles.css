@@ -5,22 +5,3 @@ body {
 .w3-card-4 {
     background-color: #323232;
 }
-
-.w3-button {
-    background-color: #323232;
-    color: #ffffff;
-    width: 120px;
-}
-
-.w3-twothird.sticky {
-    position: sticky;
-    top: 0;
-    height: calc(100vh - 72px);
-    overflow-y: auto;
-}
-
-#map {
-    height: calc(100% - 80px);
-    width: 95%;
-    margin: 0 auto;
-}
