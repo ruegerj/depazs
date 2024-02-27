@@ -166,7 +166,7 @@
                 <xsl:call-template name="rowLegend">
                     <xsl:with-param name="display" select="$avgPrice" />
                     <xsl:with-param name="heightY"
-                        select="$graphPadding + floor($actualHeight div 2)" />
+                        select="$graphPadding + round($actualHeight div 2)" />
                 </xsl:call-template>
                 <xsl:call-template name="rowLegend">
                     <xsl:with-param name="display" select="$plantMinPrice" />
@@ -229,7 +229,7 @@
                 </xsl:call-template>
                 <xsl:call-template name="horizontalGridLine">
                     <xsl:with-param name="heightY"
-                        select="$graphPadding + floor($actualHeight div 2)" />
+                        select="$graphPadding + round($actualHeight div 2)" />
                 </xsl:call-template>
                 <xsl:call-template name="horizontalGridLine">
                     <xsl:with-param name="heightY" select="$graphPadding + $actualHeight" />
@@ -313,10 +313,10 @@
             select="$actualHeight div $priceRange" />
 
         <xsl:variable name="x"
-            select="floor($legendPadding + ($monthWidth * ($month - 1)) + ($dayWidth * ($day - 1)))" />
+            select="round($legendPadding + ($monthWidth * ($month - 1)) + ($dayWidth * ($day - 1)))" />
         <xsl:variable
             name="y"
-            select="floor((number(text()) - $minPrice) * $priceSpacing) + $graphPadding" />
+            select="$height - round((number(text()) - $minPrice) * $priceSpacing) - $graphPadding" />
 
         <xsl:if
             test="position() = 1">
