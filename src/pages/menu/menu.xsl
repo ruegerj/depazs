@@ -26,7 +26,6 @@
                 </h1>
 
                 <div class="w3-row-padding w3-margin-bottom">
-
                     <xsl:apply-templates />
                 </div>
             </body>
@@ -40,7 +39,7 @@
                 <xsl:attribute name="href">
                     <xsl:value-of select="link" />
                 </xsl:attribute>
-                <div class="w3-container w3-dark-gray w3-padding-16">
+                <div class="w3-container w3-text-gray w3-hover-opacity w3-hover-light-gray depaz-gray w3-padding-16">
                     <div class="w3-center">
                         <i class="fas w3-xxxlarge">
                             <xsl:attribute name="class">
