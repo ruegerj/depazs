@@ -1,7 +1,7 @@
 import { existsSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { Router } from 'express';
-import { serveCachedFile } from '../middleware/file-cache.mjs';
+import { MIME_TYPES, serveCachedFile } from '../middleware/file-cache.mjs';
 
 const excludedDirs = [];
 const router = Router();
@@ -22,11 +22,17 @@ for (const page of pages) {
         pagePath = '/';
     }
 
-    router.get(pagePath, serveCachedFile(xmlPath));
-    router.get(`/${page.name}/${page.name}.xsl`, serveCachedFile(xlsPath));
+    router.get(pagePath, serveCachedFile(xmlPath, MIME_TYPES.XML));
+    router.get(
+        `/${page.name}/${page.name}.xsl`,
+        serveCachedFile(xlsPath, MIME_TYPES.XSL),
+    );
 
     if (existsSync(jsPath)) {
-        router.get(`/${page.name}/${page.name}.js`, serveCachedFile(jsPath));
+        router.get(
+            `/${page.name}/${page.name}.js`,
+            serveCachedFile(jsPath, MIME_TYPES.JS),
+        );
     }
 }
 

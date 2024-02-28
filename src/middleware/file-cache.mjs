@@ -1,16 +1,20 @@
 import { readFileSync } from 'node:fs';
-import { extname } from 'node:path';
+
+export const MIME_TYPES = {
+    XML: 'application/xml',
+    XSL: 'application/xml',
+    JS: 'text/javascript',
+};
 
 /**
  * Middleware which loads the specified file during app startup and responds with it on request.
  * Implementation is rather basic and therefore shouldn't be used in a production environment.
  */
-export function serveCachedFile(path) {
+export function serveCachedFile(path, mimeType) {
     const file = readFileSync(path, { encoding: 'utf-8' });
-    const fileExtension = extname(path);
 
     return (_, res, next) => {
-        res.contentType(fileExtension);
+        res.setHeader('Content-Type', mimeType);
         res.send(file);
 
         next();
