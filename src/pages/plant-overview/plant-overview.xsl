@@ -92,7 +92,7 @@
                 <link rel="stylesheet"
                     href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
                 <script src="/node_modules/leaflet/dist/leaflet.js"></script>
-                <script src="plant-overview.js"></script>
+                <script src="/plant-overview/plant-overview.js"></script>
                 <style>
                     .w3-button {
                     background-color: #323232;
