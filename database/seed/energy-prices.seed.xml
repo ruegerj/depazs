@@ -8,6 +8,8 @@
         </coordinates>
         <swiss-cantons>
             LU
+            ZG
+            NW
         </swiss-cantons>
         <prices>
             <price type="Electricity" date="2024-01-15">25</price>
@@ -28,7 +30,6 @@
             <lng>8.05974145480201</lng>
         </coordinates>
         <swiss-cantons>
-            ZH
             AG
         </swiss-cantons>
         <prices>
