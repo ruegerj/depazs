@@ -17,7 +17,11 @@
         <xs:complexType>
             <xs:all>
                 <xs:element name="coordinates" type="coordinates" />
-                <xs:element name="region-radius" type="xs:unsignedInt" />
+                <xs:element name="swiss-cantons">
+                    <xs:simpleType>
+                        <xs:list itemType="swissCanton" />
+                    </xs:simpleType>
+                </xs:element>
                 <xs:element name="prices">
                     <xs:complexType>
                         <xs:sequence minOccurs="1" maxOccurs="unbounded">
@@ -51,6 +55,37 @@
     <xs:simpleType name="plantName">
         <xs:restriction base="xs:string">
             <xs:minLength value="1" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="swissCanton">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AG" />
+            <xs:enumeration value="AI" />
+            <xs:enumeration value="AR" />
+            <xs:enumeration value="BE" />
+            <xs:enumeration value="BL" />
+            <xs:enumeration value="BS" />
+            <xs:enumeration value="FR" />
+            <xs:enumeration value="GE" />
+            <xs:enumeration value="GL" />
+            <xs:enumeration value="GR" />
+            <xs:enumeration value="JU" />
+            <xs:enumeration value="LU" />
+            <xs:enumeration value="NE" />
+            <xs:enumeration value="NW" />
+            <xs:enumeration value="OW" />
+            <xs:enumeration value="SG" />
+            <xs:enumeration value="SH" />
+            <xs:enumeration value="SO" />
+            <xs:enumeration value="SZ" />
+            <xs:enumeration value="TG" />
+            <xs:enumeration value="TI" />
+            <xs:enumeration value="UR" />
+            <xs:enumeration value="VD" />
+            <xs:enumeration value="VS" />
+            <xs:enumeration value="ZG" />
+            <xs:enumeration value="ZH" />
         </xs:restriction>
     </xs:simpleType>
 
