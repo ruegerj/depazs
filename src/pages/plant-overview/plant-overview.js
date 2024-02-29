@@ -5,6 +5,22 @@ function initializeMap() {
         maxZoom: 19,
     }).addTo(map);
 
+    // Load GeoJSON data for swiss cantons
+    fetch('/plant-overview/plant-overview.geojson')
+        .then(response => response.json())
+        .then(data => {
+            // Add GeoJSON layer for swiss cantons
+            L.geoJson(data, {
+                style: function (feature) {
+                    return {
+                        weight: 2,
+                        opacity: 1,
+                        color: 'black',
+                    };
+                }
+            }).addTo(map);
+        });
+
     return map;
 }
 
