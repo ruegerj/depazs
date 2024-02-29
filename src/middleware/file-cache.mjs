@@ -4,6 +4,7 @@ export const MIME_TYPES = {
     XML: 'application/xml',
     XSL: 'application/xml',
     JS: 'text/javascript',
+    JSON: 'application/json',
 };
 
 /**
