@@ -1,3 +1,5 @@
+let cantonsLayer;
+
 function initializeMap() {
     const map = L.map('map').setView([46.8182, 8.2275], 8);
 
@@ -5,23 +7,22 @@ function initializeMap() {
         maxZoom: 19,
     }).addTo(map);
 
-    // Load GeoJSON data for swiss cantons
-    fetch('/plant-overview/plant-overview.geojson')
+    // load GeoJSON for swiss cantons
+    return fetch('/plant-overview/plant-overview.geojson')
         .then(response => response.json())
         .then(data => {
-            // Add GeoJSON layer for swiss cantons
-            L.geoJson(data, {
+            cantonsLayer = L.geoJson(data, {
                 style: function (feature) {
                     return {
-                        weight: 2,
+                        weight: 1,
                         opacity: 1,
                         color: 'black',
                     };
                 }
             }).addTo(map);
-        });
 
-    return map;
+            return map;
+        });
 }
 
 function addMarkerToMap(map, lat, lng, name, prices) {
@@ -52,24 +53,39 @@ function addMarkerToMap(map, lat, lng, name, prices) {
     marker.bindPopup(popupContent);
 }
 
+function recolorCantons(cantons, color) {
+    if (!cantonsLayer) return;
+
+    cantonsLayer.eachLayer(function (layer) {
+        if (cantons.includes(layer.feature.properties.KUERZEL)) {
+            layer.setStyle({ fillColor: color, fillOpacity: 0.7});
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
-    const map = initializeMap();
+    initializeMap().then(map => {
+        const mapElements = Array.from(
+            document.getElementsByClassName('marker-data'),
+        );
 
-    const mapElements = Array.from(
-        document.getElementsByClassName('marker-data'),
-    );
+        const colors = ['green', 'blue', 'red', 'yellow', 'orange', 'purple', 'pink', 'brown', 'grey', 'cyan', 'magenta', 'lime'];
 
-    mapElements.forEach(function (element) {
-        const lat = element.dataset.lat;
-        const lng = element.dataset.lng;
-        const name = element.dataset.name;
+        mapElements.forEach(function (element, index) {
+            const lat = element.dataset.lat;
+            const lng = element.dataset.lng;
+            const name = element.dataset.name;
 
-        const prices = {
-            Electricity: element.dataset.electricityPrice,
-            Gas: element.dataset.gasPrice,
-            Oil: element.dataset.oilPrice,
-        };
+            const prices = {
+                Electricity: element.dataset.electricityPrice,
+                Gas: element.dataset.gasPrice,
+                Oil: element.dataset.oilPrice,
+            };
 
-        addMarkerToMap(map, lat, lng, name, prices);
+            addMarkerToMap(map, lat, lng, name, prices);
+
+            const cantons = element.dataset.cantons.split('\n').map(canton => canton.trim()).filter(Boolean);
+            recolorCantons(cantons, colors[index % colors.length]);
+        });
     });
 });

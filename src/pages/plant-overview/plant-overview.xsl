@@ -50,7 +50,7 @@
                     </p>
                 </div>
                 <!-- Add data attributes for each energy type price -->
-                <div data-lat="{coordinates/lat}" data-lng="{coordinates/lng}" data-name="{@name}"
+                <div data-name="{@name}" data-lat="{coordinates/lat}" data-lng="{coordinates/lng}" data-cantons="{swiss-cantons}"
                     class="marker-data">
                     <xsl:call-template name="addEnergyTypePriceAttribute">
                         <xsl:with-param name="type" select="'electricity'" />
