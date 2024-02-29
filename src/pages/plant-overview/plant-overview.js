@@ -5,6 +5,7 @@ async function initializeMap() {
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     // Load GeoJSON for Swiss cantons
@@ -16,6 +17,7 @@ async function initializeMap() {
                 weight: 1,
                 opacity: 1,
                 color: 'black',
+                fillOpacity: 0,
             }
         }).addTo(map);
         return map;
