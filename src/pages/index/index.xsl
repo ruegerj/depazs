@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns="http://www.w3.org/1999/xhtml">
     <xsl:output
         doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
         doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
@@ -39,7 +40,8 @@
                 <xsl:attribute name="href">
                     <xsl:value-of select="link" />
                 </xsl:attribute>
-                <div class="w3-container w3-text-gray w3-hover-opacity w3-hover-light-gray depaz-gray w3-padding-16">
+                <div
+                    class="w3-container w3-text-gray w3-hover-opacity w3-hover-light-gray depaz-gray w3-padding-16">
                     <div class="w3-center">
                         <i class="fas w3-xxxlarge">
                             <xsl:attribute name="class">
