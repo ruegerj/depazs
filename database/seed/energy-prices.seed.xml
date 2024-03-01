@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <energy-data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="../energy-prices.schema.xsd">
+    xsi:noNamespaceSchemaLocation="./energy-prices.schema.xsd">
     <plant name="Energie Wasser Luzern">
         <coordinates>
             <lat>47.041649198202734</lat>
