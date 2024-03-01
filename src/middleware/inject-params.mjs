@@ -13,7 +13,7 @@ export function injectUrlParams(defaults) {
         ]);
 
         // monkey patch res.send to be able to replace placeholders in the response buffer
-        let send = res.send;
+        const send = res.send;
         res.send = function (content) {
             let body = content instanceof Buffer ? content.toString() : content;
 

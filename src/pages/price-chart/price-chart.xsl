@@ -33,11 +33,51 @@
                 <h1 class="w3-text-white">Price Chart - <xsl:value-of select="$displayYear" />
                 </h1>
 
+                <form method="GET">
+                    <div class="w3-row-padding">
+                        <div class="w3-third">
+                            <select class="w3-select" name="year">
+                                <option value="" disabled="true" selected="true">Choose year</option>
+                                <xsl:call-template name="unqiueYearOptions">
+                                    <xsl:with-param name="prices"
+                                        select="document('/database/energy-prices.xml')//price" />
+                                </xsl:call-template>
+                            </select>
+                        </div>
+                        <div class="w3-third">
+                            <input class="w3-btn w3-green w3-medium" type="submit" value="Change" />
+                        </div>
+                    </div>
+                </form>
+
                 <xsl:apply-templates
                     select="document('/database/energy-prices.xml')/energy-data/plant">
                 </xsl:apply-templates>
             </body>
         </html>
+    </xsl:template>
+
+    <!-- Unique Year Options by recursive grouping -->
+    <xsl:template name="unqiueYearOptions">
+        <xsl:param name="prices" />
+
+        <xsl:variable name="year"
+            select="substring-before($prices[1]/@date, '-')" />
+        <xsl:variable
+            name="yearGroup" select="$prices[substring-before(@date, '-')=$year]" />
+
+        <option
+            value="{$year}">
+            <xsl:value-of select="$year" />
+        </option>
+
+        <xsl:if
+            test="count($prices) &gt; count($yearGroup)">
+            <xsl:call-template name="unqiueYearOptions">
+                <xsl:with-param name="prices"
+                    select="$prices[not(substring-before(@date, '-') = $year)]" />
+            </xsl:call-template>
+        </xsl:if>
     </xsl:template>
 
     <!-- Plant Price Graph -->
