@@ -7,7 +7,7 @@
         doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
 
     <xsl:variable
-        name="displayYear" select="'2024'" />
+        name="displayYear" select="'%YEAR%'" />
     <xsl:variable name="width" select="600" />
     <xsl:variable
         name="height" select="300" />
