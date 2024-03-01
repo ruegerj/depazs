@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="energy-data">
+        <xs:annotation>
+            <xs:documentation> Contains the energy prices of the largest energy providers in
+                Switzerland. </xs:documentation>
+        </xs:annotation>
         <xs:complexType>
             <xs:sequence minOccurs="1" maxOccurs="unbounded">
                 <xs:element ref="plant" />
@@ -14,12 +18,29 @@
     </xs:element>
 
     <xs:element name="plant">
+        <xs:annotation>
+            <xs:documentation> A large regional branch office from one of the energy providers in
+                Switzerland. Supplies one or more cantons with different types of energy. </xs:documentation>
+        </xs:annotation>
+
         <xs:complexType>
             <xs:all>
-                <xs:element name="coordinates" type="coordinates" />
+                <xs:element name="coordinates" type="coordinates">
+                    <xs:annotation>
+                        <xs:documentation> Coordinates (latitude longtitude) of a plants location. </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
                 <xs:element name="swiss-cantons">
+                    <xs:annotation>
+                        <xs:documentation> List of cantons which the plant provides energy to (min.
+                            1). Cantons are defined in their respective two letter format (e.g Zug
+                            -&gt; ZG).</xs:documentation>
+                    </xs:annotation>
+
                     <xs:simpleType>
-                        <xs:list itemType="swissCanton" />
+                        <xs:restriction base="swissCantons">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="prices">
@@ -30,15 +51,29 @@
                     </xs:complexType>
                 </xs:element>
             </xs:all>
-            <xs:attribute name="name" type="plantName" use="required" />
+            <xs:attribute name="name" type="plantName" use="required">
+                <xs:annotation>
+                    <xs:documentation> Required and unique name of the plant. </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="price">
+        <xs:annotation>
+            <xs:documentation> Price record for a certain day and a certain energy type of the plant
+                with. There must be only one price record per day per type per plant. </xs:documentation>
+        </xs:annotation>
+
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="priceAmount">
-                    <xs:attribute name="type" type="energyType" use="required" />
+                    <xs:attribute name="type" type="energyType" use="required">
+                        <xs:annotation>
+                            <xs:documentation> One of the three supported energy types: Electricity,
+                                Gas, Oil </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
                     <xs:attribute name="date" type="xs:date" use="required" />
                 </xs:extension>
             </xs:simpleContent>
@@ -56,6 +91,10 @@
         <xs:restriction base="xs:string">
             <xs:minLength value="1" />
         </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="swissCantons">
+        <xs:list itemType="swissCanton" />
     </xs:simpleType>
 
     <xs:simpleType name="swissCanton">
