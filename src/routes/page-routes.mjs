@@ -15,7 +15,6 @@ for (const page of pages) {
     const xmlPath = join(page.path, page.name, `${page.name}.xml`);
     const xlsPath = join(page.path, page.name, `${page.name}.xsl`);
     const jsPath = join(page.path, page.name, `${page.name}.js`);
-    const geoJsonPath = join(page.path, page.name, `${page.name}.geojson`);
 
     let pagePath = `/${page.name}`;
 
@@ -33,13 +32,6 @@ for (const page of pages) {
         router.get(
             `/${page.name}/${page.name}.js`,
             serveCachedFile(jsPath, MIME_TYPES.JS),
-        );
-    }
-
-    if (existsSync(geoJsonPath)) {
-        router.get(
-            `/${page.name}/${page.name}.geojson`,
-            serveCachedFile(geoJsonPath, MIME_TYPES.JSON),
         );
     }
 }

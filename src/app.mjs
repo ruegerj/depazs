@@ -15,13 +15,12 @@ export function bootstrap() {
     // serve static content
     app.use('/node_modules', express.static(path.resolve('node_modules')));
     app.use('/database', express.static(path.resolve('database')));
-    app.use('/css', express.static(path.resolve('src', 'css')));
-
     app.use(express.urlencoded({ extended: true }));
 
     // configure page- & api-routes
     app.use(pageRoutes);
     app.use('/api', apiRoutes);
+    app.use('/', express.static(path.resolve('src', 'public')));
 
     return app;
 }
