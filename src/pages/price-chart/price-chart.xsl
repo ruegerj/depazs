@@ -28,31 +28,75 @@
                     rel="stylesheet"
                     href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css"
                 />
+                <script>
+                    // Script to open and close sidebar
+                    function w3_open() {
+                    document.getElementById("mySidebar").style.display = "block";
+                    }
+
+                    function w3_close() {
+                    document.getElementById("mySidebar").style.display = "none";
+                    }
+                </script>
             </head>
-            <body class="w3-container">
-                <h1 class="w3-text-white">Price Chart - <xsl:value-of select="$displayYear" />
-                </h1>
+            <body>
+                <!-- Sidebar (hidden by default) -->
+                <div class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left"
+                    style="display:none;z-index:2;width:25%;min-width:300px; background-color: #323232"
+                    id="mySidebar">
+                    <a href="javascript:void(0)" onclick="w3_close()"
+                        class="w3-bar-item w3-button w3-text-white">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-text-white">
+        Home</a>
+                    <a href="add-price" onclick="w3_close()"
+                        class="w3-bar-item w3-button w3-text-white">Add Price</a>
+                    <a href="price-chart" onclick="w3_close()"
+                        class="w3-bar-item w3-button w3-text-white">Price Chart</a>
+                    <a href="plant-overview" onclick="w3_close()"
+                        class="w3-bar-item w3-button w3-text-white">Plant Overview</a>
+                </div>
 
-                <form method="GET">
-                    <div class="w3-row-padding">
-                        <div class="w3-third">
-                            <select class="w3-select" name="year">
-                                <option value="" disabled="true" selected="true">Choose year</option>
-                                <xsl:call-template name="unqiueYearOptions">
-                                    <xsl:with-param name="prices"
-                                        select="document('/database/energy-prices.xml')//price" />
-                                </xsl:call-template>
-                            </select>
-                        </div>
-                        <div class="w3-third">
-                            <input class="w3-btn w3-green w3-medium" type="submit" value="Change" />
-                        </div>
+                <!-- Top menu -->
+                <div class="w3-top">
+                    <div class="w3-white w3-xlarge">
+                        <div class="w3-button w3-padding-16 w3-left w3-text-white"
+                            style="background-color: #323232;
+                        width: 120px;"
+                            onclick="w3_open()">☰</div>
+                        <div class="w3-padding-16 w3-text-white" style="background-color: #323232;">
+        &#xA0;DEPAZS</div>
                     </div>
-                </form>
+                </div>
 
-                <xsl:apply-templates
-                    select="document('/database/energy-prices.xml')/energy-data/plant">
-                </xsl:apply-templates>
+                <div class="w3-container">
+                    <h1 class="w3-container w3-text-white w3-jumbo" style="margin-top: 80px">
+                        <b>Price Chart - <xsl:value-of select="$displayYear" /></b>
+                    </h1>
+
+                    <form method="GET">
+                        <div class="w3-row-padding">
+                            <div class="w3-third">
+                                <select class="w3-select" name="year">
+                                    <option value="" disabled="true" selected="true">Choose year</option>
+                                    <xsl:call-template name="unqiueYearOptions">
+                                        <xsl:with-param name="prices"
+                                            select="document('/database/energy-prices.xml')//price" />
+                                    </xsl:call-template>
+                                </select>
+                            </div>
+                            <div class="w3-third">
+                                <input class="w3-btn w3-green w3-medium" type="submit"
+                                    value="Change" />
+                            </div>
+                        </div>
+                    </form>
+
+                    <xsl:apply-templates
+                        select="document('/database/energy-prices.xml')/energy-data/plant">
+                    </xsl:apply-templates>
+                </div>
             </body>
         </html>
     </xsl:template>
