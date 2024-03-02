@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         'lime',
     ];
 
-    mapElements.forEach((element, index) => {
+    const processedPlants = new Set();
+    mapElements.forEach((element) => {
         const {
             lat,
             lng,
@@ -89,17 +90,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             oilPrice,
             cantons,
         } = element.dataset;
-        const prices = {
-            Electricity: electricityPrice,
-            Gas: gasPrice,
-            Oil: oilPrice,
-        };
-        const cantonList = cantons
-            .split('\n')
-            .map((canton) => canton.trim())
-            .filter(Boolean);
 
-        addMarkerToMap(map, lat, lng, name, prices);
-        recolorCantons(cantonList, colors[index % colors.length]);
+        if (!processedPlants.has(name)) {
+            const prices = {
+                Electricity: electricityPrice,
+                Gas: gasPrice,
+                Oil: oilPrice,
+            };
+            const cantonList = cantons
+                .split('\n')
+                .map((canton) => canton.trim())
+                .filter(Boolean);
+
+            addMarkerToMap(map, lat, lng, name, prices);
+            recolorCantons(cantonList, colors[processedPlants.size % colors.length]);
+
+            processedPlants.add(name);
+        }
     });
 });
