@@ -28,16 +28,7 @@
                     rel="stylesheet"
                     href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css"
                 />
-                <script>
-                    // Script to open and close sidebar
-                    function w3_open() {
-                    document.getElementById("mySidebar").style.display = "block";
-                    }
-
-                    function w3_close() {
-                    document.getElementById("mySidebar").style.display = "none";
-                    }
-                </script>
+                <script src="../sidebar.js"></script>
             </head>
             <body>
                 <!-- Sidebar (hidden by default) -->
