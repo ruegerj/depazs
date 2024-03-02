@@ -22,10 +22,12 @@
                 />
             </head>
             <body>
-                <h1 class="w3-container w3-text-white">
-                    Digitale Energie Preis Auskunft Zentral Stelle - DEPAZS
+                <h1 class="w3-container w3-text-white w3-jumbo w3-center">
+                    <b class="w3-center">DEPAZS</b>
                 </h1>
-
+                <h2 class="w3-container w3-text-white w3-xxlarge w3-center" style="margin-bottom: 50px;">
+                    Digitale Energie Preis Auskunfts Stelle
+                </h2>
                 <div class="w3-row-padding w3-margin-bottom">
                     <xsl:apply-templates />
                 </div>
@@ -45,7 +47,7 @@
                     <div class="w3-center">
                         <i class="fas w3-xxxlarge">
                             <xsl:attribute name="class">
-                                <xsl:text>fas w3-xxxlarge fa-</xsl:text>
+                                <xsl:text>fas w3-jumbo fa-</xsl:text>
                                 <xsl:value-of select="iconName" />
                             </xsl:attribute>
                         </i>
