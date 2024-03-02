@@ -93,6 +93,16 @@
                     href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
                 <script src="/node_modules/leaflet/dist/leaflet.js"></script>
                 <script src="/plant-overview/plant-overview.js"></script>
+                <script>
+                    // Script to open and close sidebar
+                    function w3_open() {
+                    document.getElementById("mySidebar").style.display = "block";
+                    }
+
+                    function w3_close() {
+                    document.getElementById("mySidebar").style.display = "none";
+                    }
+                </script>
                 <style>
                     .w3-button {
                     background-color: #323232;
@@ -114,7 +124,26 @@
                 </style>
             </head>
             <body>
-                <h1 class="w3-container w3-text-white">Plant Overview</h1>
+                <!-- Sidebar (hidden by default) -->
+                <div class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left"
+                    style="display:none;z-index:2;width:25%;min-width:300px; background-color: #323232" id="mySidebar">
+                    <a href="javascript:void(0)" onclick="w3_close()"
+                        class="w3-bar-item w3-button w3-text-white"><i class="fas fa-times"></i></a>
+                    <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-text-white">Home</a>
+                    <a href="add-price" onclick="w3_close()" class="w3-bar-item w3-button w3-text-white">Add Price</a>
+                    <a href="price-chart" onclick="w3_close()" class="w3-bar-item w3-button w3-text-white">Price Chart</a>
+                    <a href="plant-overview" onclick="w3_close()" class="w3-bar-item w3-button w3-text-white">Plant Overview</a>
+                </div>
+
+                <!-- Top menu -->
+                <div class="w3-top">
+                    <div class="w3-white w3-xlarge">
+                        <div class="w3-button w3-padding-16 w3-left w3-text-white" onclick="w3_open()">☰</div>
+                        <div class="w3-padding-16 w3-text-white" style="background-color: #323232;">&#xA0;DEPAZS</div>
+                    </div>
+                </div>
+
+                <h1 class="w3-container w3-text-white w3-jumbo" style="margin-top: 80px"><b>Plant Overview</b></h1>
 
                 <!-- Navigation -->
                 <div class="w3-center">
