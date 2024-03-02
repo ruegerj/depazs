@@ -93,11 +93,6 @@
                 <script src="/plant-overview/plant-overview.js"></script>
                 <script src="../sidebar.js"></script>
                 <style>
-                    .w3-button {
-                    background-color: #323232;
-                    width: 120px;
-                    }
-
                     .w3-twothird.sticky {
                     position: sticky;
                     top: 0;
@@ -114,8 +109,9 @@
             </head>
             <body>
                 <!-- Sidebar (hidden by default) -->
-                <div class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left"
-                    style="display:none;z-index:2;width:25%;min-width:300px; background-color: #323232"
+                <div
+                    class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left depaz-gray"
+                    style="display:none;z-index:2;width:25%;min-width:300px;"
                     id="mySidebar">
                     <a href="javascript:void(0)" onclick="w3_close()"
                         class="w3-bar-item w3-button w3-text-white">
@@ -134,10 +130,11 @@
                 <!-- Top menu -->
                 <div class="w3-top">
                     <div class="w3-white w3-xlarge">
-                        <div class="w3-button w3-padding-16 w3-left w3-text-white"
+                        <div class="w3-button w3-padding-16 w3-left w3-text-white depaz-gray"
+                            style="width: 120px;"
                             onclick="w3_open()">☰</div>
-                        <div class="w3-padding-16 w3-text-white" style="background-color: #323232;">
-        &#xA0;DEPAZS</div>
+                        <div class="w3-padding-16 w3-text-white depaz-gray">
+                            &#xA0;DEPAZS</div>
                     </div>
                 </div>
 
@@ -150,13 +147,17 @@
                     <div class="w3-center">
                         <div class="w3-bar">
                             <a href="#Electricity"
-                                class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white">
-        Electricity</a>
+                                class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white depaz-gray"
+                                style="width: 120px;">Electricity
+                            </a>
                             <a href="#Gas"
-                                class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white">
-        Gas</a>
+                                class="w3-button w3-round-xxlarge w3-large w3-margin-right w3-text-white depaz-gray"
+                                style="width: 120px;">Gas
+                            </a>
                             <a href="#Oil"
-                                class="w3-button w3-round-xxlarge w3-large w3-text-white">Oil</a>
+                                class="w3-button w3-round-xxlarge w3-large w3-text-white depaz-gray"
+                                style="width: 120px;">Oil
+                            </a>
                         </div>
                     </div>
 
