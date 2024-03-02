@@ -25,8 +25,9 @@
                 <h1 class="w3-container w3-text-white w3-jumbo w3-center">
                     <b class="w3-center">DEPAZS</b>
                 </h1>
-                <h2 class="w3-container w3-text-white w3-xxlarge w3-center" style="margin-bottom: 50px;">
-                    Digitale Energie Preis Auskunfts Stelle
+                <h2 class="w3-container w3-text-white w3-xxlarge w3-center"
+                    style="margin-bottom: 50px;">
+                    Digitale Energie Preis Auskunfts Zentralstelle
                 </h2>
                 <div class="w3-row-padding w3-margin-bottom">
                     <xsl:apply-templates />
@@ -36,27 +37,28 @@
     </xsl:template>
 
     <xsl:template match="page">
-        <div class="w3-third">
-
-            <a href="/plant-overview">
-                <xsl:attribute name="href">
-                    <xsl:value-of select="link" />
-                </xsl:attribute>
-                <div
-                    class="w3-container w3-text-white w3-hover-opacity w3-hover-light-gray depaz-gray w3-padding-16">
-                    <div class="w3-center">
-                        <i class="fas w3-xxxlarge">
-                            <xsl:attribute name="class">
-                                <xsl:text>fas w3-jumbo fa-</xsl:text>
-                                <xsl:value-of select="iconName" />
-                            </xsl:attribute>
-                        </i>
-                        <h4>
-                            <xsl:value-of select="name" />
-                        </h4>
+        <div class="w3-container w3-margin">
+            <div class="w3-center" style="max-width: 800px; margin: 0 auto;">
+                <a href="/plant-overview">
+                    <xsl:attribute name="href">
+                        <xsl:value-of select="link" />
+                    </xsl:attribute>
+                    <div
+                        class="w3-container w3-text-white w3-hover-opacity w3-hover-light-gray depaz-gray w3-padding-16 w3-animate-bottom">
+                        <div class="w3-center">
+                            <i class="fas w3-xxxlarge">
+                                <xsl:attribute name="class">
+                                    <xsl:text>fas w3-jumbo fa-</xsl:text>
+                                    <xsl:value-of select="iconName" />
+                                </xsl:attribute>
+                            </i>
+                            <h4>
+                                <xsl:value-of select="name" />
+                            </h4>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
     </xsl:template>
 </xsl:stylesheet>
