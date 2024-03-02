@@ -10,6 +10,7 @@
             LU
             ZG
             NW
+            OW
         </swiss-cantons>
         <prices>
             <price type="Electricity" date="2024-01-15">25</price>
@@ -70,6 +71,56 @@
             <price type="Electricity" date="2024-05-20">29</price>
             <price type="Electricity" date="2024-07-10">21</price>
             <price type="Electricity" date="2024-09-03">31</price>
+        </prices>
+    </plant>
+    <plant name="Repower AG">
+        <coordinates>
+            <lat>46.77247649789066</lat>
+            <lng>9.193976491932741</lng>
+        </coordinates>
+        <swiss-cantons>
+            GL
+            GR
+            SZ
+            UR
+        </swiss-cantons>
+        <prices>
+            <price type="Electricity" date="2024-01-15">30</price>
+            <price type="Electricity" date="2024-03-05">22</price>
+            <price type="Electricity" date="2024-05-20">32</price>
+            <price type="Electricity" date="2024-07-10">24</price>
+            <price type="Electricity" date="2024-09-03">34</price>
+            <price type="Gas" date="2024-01-15">40</price>
+            <price type="Gas" date="2024-03-05">32</price>
+            <price type="Gas" date="2024-05-20">45</price>
+            <price type="Gas" date="2024-07-10">35</price>
+            <price type="Gas" date="2024-09-03">50</price>
+            <price type="Oil" date="2024-01-15">50</price>
+            <price type="Oil" date="2024-03-05">38</price>
+            <price type="Oil" date="2024-05-20">55</price>
+            <price type="Oil" date="2024-07-10">43</price>
+            <price type="Oil" date="2024-09-03">60</price>
+        </prices>
+    </plant>
+    <plant name="Group E SA">
+        <coordinates>
+            <lat>46.82258841306158</lat>
+            <lng>7.150136371184475</lng>
+        </coordinates>
+        <swiss-cantons>
+            FR
+        </swiss-cantons>
+        <prices>
+            <price type="Electricity" date="2024-01-15">29</price>
+            <price type="Electricity" date="2024-03-05">21</price>
+            <price type="Electricity" date="2024-05-20">31</price>
+            <price type="Electricity" date="2024-07-10">23</price>
+            <price type="Electricity" date="2024-09-03">33</price>
+            <price type="Oil" date="2024-01-15">50</price>
+            <price type="Oil" date="2024-03-05">38</price>
+            <price type="Oil" date="2024-05-20">55</price>
+            <price type="Oil" date="2024-07-10">43</price>
+            <price type="Oil" date="2024-09-03">60</price>
         </prices>
     </plant>
 </energy-data>
