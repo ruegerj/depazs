@@ -26,7 +26,7 @@
         <xsl:param name="color" />
         <xsl:if
             test="prices/price[@type = $energyType]">
-            <div class="w3-card-4 w3-round-medium w3-margin-top">
+            <div class="w3-card-4 w3-round-medium w3-margin-top w3-margin-bottom">
                 <h3 class="w3-text-white">
                     <xsl:attribute name="class">
                         <xsl:text>w3-container w3-round-medium w3-</xsl:text>
