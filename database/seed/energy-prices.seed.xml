@@ -17,12 +17,14 @@
             <price type="Electricity" date="2023-03-05">18</price>
             <price type="Electricity" date="2023-05-20">29</price>
             <price type="Electricity" date="2023-07-10">21</price>
-            <price type="Electricity" date="2024-09-03">23</price>
+            <price type="Electricity" date="2023-09-03">23</price>
+            <price type="Electricity" date="2023-12-24">24</price>
             <price type="Gas" date="2023-01-15">29</price>
             <price type="Gas" date="2023-03-05">27</price>
             <price type="Gas" date="2023-05-20">38</price>
             <price type="Gas" date="2023-07-10">33</price>
             <price type="Gas" date="2023-09-03">42</price>
+            <price type="Gas" date="2023-12-23">44</price>
             <price type="Electricity" date="2024-01-15">25</price>
             <price type="Electricity" date="2024-03-05">18</price>
             <price type="Electricity" date="2024-05-20">28</price>
@@ -49,6 +51,7 @@
             <price type="Electricity" date="2023-05-20">27</price>
             <price type="Electricity" date="2023-07-10">29</price>
             <price type="Electricity" date="2023-09-03">31</price>
+            <price type="Electricity" date="2023-12-20">35</price>
             <price type="Electricity" date="2024-01-15">28</price>
             <price type="Electricity" date="2024-03-05">20</price>
             <price type="Electricity" date="2024-05-20">30</price>
@@ -70,6 +73,7 @@
             <price type="Oil" date="2023-05-20">63</price>
             <price type="Oil" date="2023-07-10">49</price>
             <price type="Oil" date="2023-09-03">72</price>
+            <price type="Oil" date="2023-12-22">75</price>
             <price type="Oil" date="2024-01-15">55</price>
             <price type="Oil" date="2024-03-05">42</price>
             <price type="Oil" date="2024-05-20">60</price>
@@ -91,6 +95,7 @@
             <price type="Electricity" date="2023-05-20">18</price>
             <price type="Electricity" date="2023-07-10">23</price>
             <price type="Electricity" date="2023-09-03">25</price>
+            <price type="Electricity" date="2023-12-18">27</price>
             <price type="Electricity" date="2024-01-15">27</price>
             <price type="Electricity" date="2024-03-05">19</price>
             <price type="Electricity" date="2024-05-20">29</price>
@@ -115,16 +120,19 @@
             <price type="Electricity" date="2023-05-20">26</price>
             <price type="Electricity" date="2023-07-10">24</price>
             <price type="Electricity" date="2023-09-03">31</price>
+            <price type="Electricity" date="2023-12-06">34</price>
             <price type="Gas" date="2023-01-15">38</price>
             <price type="Gas" date="2023-03-05">33</price>
             <price type="Gas" date="2023-05-20">42</price>
             <price type="Gas" date="2023-07-10">37</price>
             <price type="Gas" date="2023-09-03">49</price>
+            <price type="Gas" date="2023-12-05">47</price>
             <price type="Oil" date="2023-01-15">49</price>
             <price type="Oil" date="2023-03-05">47</price>
             <price type="Oil" date="2023-05-20">43</price>
             <price type="Oil" date="2023-07-10">44</price>
             <price type="Oil" date="2023-09-03">48</price>
+            <price type="Oil" date="2023-12-08">52</price>
             <price type="Electricity" date="2024-01-15">30</price>
             <price type="Electricity" date="2024-03-05">22</price>
             <price type="Electricity" date="2024-05-20">32</price>
@@ -156,11 +164,13 @@
             <price type="Electricity" date="2023-05-20">27</price>
             <price type="Electricity" date="2023-07-10">25</price>
             <price type="Electricity" date="2023-09-03">28</price>
+            <price type="Electricity" date="2023-12-15">31</price>
             <price type="Oil" date="2023-01-15">55</price>
             <price type="Oil" date="2023-03-05">48</price>
             <price type="Oil" date="2023-05-20">52</price>
             <price type="Oil" date="2023-07-10">50</price>
             <price type="Oil" date="2023-09-03">54</price>
+            <price type="Oil" date="2023-12-17">56</price>
             <price type="Electricity" date="2024-01-15">29</price>
             <price type="Electricity" date="2024-03-05">21</price>
             <price type="Electricity" date="2024-05-20">31</price>
